@@ -29,4 +29,4 @@ class TimePage extends React.Component{
     );
   }
 }
-export default connect()(TimePage);
+export default TimePage;

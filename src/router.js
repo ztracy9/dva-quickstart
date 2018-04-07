@@ -7,8 +7,7 @@ import movieDetailPage from "./routes/MovieDetailPage";
 import CinemaPage from "./routes/CinemaPage";
 import TimePage from "./routes/TimePage";
 import ChooseSeatPage from "./routes/ChooseSeatPage";
-import CommentPage from "./routes/CommentPage";
-
+import MovieManagePage from "./routes/MovieManagePage";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -19,7 +18,7 @@ function RouterConfig({ history }) {
         <Route path="/cinema/:mid" exact component={CinemaPage}/>
         <Route path="/timelist/:mid/:cid" exact component={TimePage}/>
         <Route path="/chooseSeat/:cid" exact component={ChooseSeatPage}/>
-        <Route path="/comment/:mid/:cid" exact component={CommentPage}/>
+        <Route path="/manage" exact component={MovieManagePage}/>
       </Switch>
     </Router>
   );
