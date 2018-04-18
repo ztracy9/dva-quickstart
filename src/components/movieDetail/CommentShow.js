@@ -1,69 +1,57 @@
-import { List, Avatar, Button, Spin, Rate } from 'antd';
+import { Table, Avatar, Button, Spin, Rate,Row,Col } from 'antd';
 import React from 'react';
+import request from '../../utils/request';
 
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
+const columns=[
+  {
+    title: '',
+    dataIndex: 'id',
+    render:(text, record)=>(
+      <Row>
+        <Col span={18}>
+          <Row>
+            <Col span={3}>
+              <Avatar src={record.avatar}/>
+              <p style={{fontWeight:'bold'}}>{record.name}</p>
+            </Col>
+            <Col span={18}>
+              <div style={{paddingTop:10,fontSize:16}}>
+                {record.comment}
+              </div>
+            </Col>
+          </Row>
+        </Col>
+        <Col span={6}>
+          <Rate disabled defaultValue={record.rank} />
+        </Col>
+      </Row>
+    )
+  }
+];
 
 class CommentShow extends React.Component {
-  state = {
-    loading: true,
-    loadingMore: false,
-    showLoadingMore: true,
-    data: [],
+  constructor (props) {
+    super(props);
+    this.state={
+      cinemaList:[]
+    }
   }
-  componentDidMount() {
-    this.getData((res) => {
-      this.setState({
-        loading: false,
-        data: res.results,
-      });
-    });
-  }
-
-  getData = (callback) => {
-    fetch(fakeDataUrl)
-      .then(res => res.json())
-      .then(res => {
-        callback(res);
+  componentWillMount(){
+    let body = {mid:this.props.mid};
+    request('http://localhost:8080/comment/getByMid',JSON.stringify(body))
+      .then((res)=>{
+        this.setState({
+          commentList:res
         });
-  }
-  onLoadMore = () => {
-    this.setState({
-      loadingMore: true,
-    });
-    this.getData((res) => {
-      const data = this.state.data.concat(res.results);
-      this.setState({
-        data,
-        loadingMore: false,
-      }, () => {
-        // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-        // In real scene, you can using public method of react-virtualized:
-        // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-        window.dispatchEvent(new Event('resize'));
       });
-    });
   }
   render() {
-    const { loading, loadingMore, showLoadingMore, data } = this.state;
-    const loadMore = showLoadingMore ? (
-      <div style={{ textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px' }}>
-        {loadingMore && <Spin />}
-        {!loadingMore && <Button onClick={this.onLoadMore}>loading more</Button>}
-      </div>
-    ) : null;
+    const{commentList} = this.state;
     return (
-      <List className="demo-loadmore-list" loading={loading} itemLayout="horizontal" loadMore={loadMore} dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            <Rate disabled defaultValue={2} />
-            <List.Item.Meta
-              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-              title={<a href="https://ant.design">{item.name.last}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-            />
-          </List.Item>
-        )}
-      />
+      <div>
+        <Table rowKey={record => record.id} columns={columns} dataSource={commentList}
+               showHeader={false} pagination={{pageSize:8}}/>
+      </div>
     );
   }
 }

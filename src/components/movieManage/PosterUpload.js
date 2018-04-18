@@ -20,13 +20,18 @@ function beforeUpload(file) {
 class PosterUpload extends React.Component {
   state = {
     loading: false,
+    imageUrl:'',
   };
   handleChange = (info) => {
+    console.log(info.file);
+
     if (info.file.status === 'uploading') {
+      console.log('uploading');
       this.setState({loading: true});
       return;
     }
     if (info.file.status === 'done') {
+      console.log('done');
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, imageUrl => this.setState({
         imageUrl,
@@ -48,7 +53,7 @@ class PosterUpload extends React.Component {
         name="posterUpload"
         listType="picture-card"
         showUploadList={false}
-        action="//jsonplaceholder.typicode.com/posts/"
+        action="http://localhost:8080/pic/uploadPost"
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >

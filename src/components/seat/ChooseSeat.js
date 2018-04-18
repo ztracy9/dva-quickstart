@@ -14,12 +14,12 @@ class ChooseSeat extends React.Component{
     return(
       <div>
         <SeatRow row={1} onChoose={this.props.onChoose}/>
-        <SeatRow row={2} onChoose={this.props.onChoose}/>
-        <SeatRow row={3} onChoose={this.props.onChoose}/>
-        <SeatRow row={4} onChoose={this.props.onChoose}/>
-        <SeatRow row={5} onChoose={this.props.onChoose}/>
-        <SeatRow row={6} onChoose={this.props.onChoose}/>
-        <SeatRow row={7} onChoose={this.props.onChoose}/>
+        <SeatRow  row={2} onChoose={this.props.onChoose}/>
+        <SeatRow  row={3} onChoose={this.props.onChoose}/>
+        <SeatRow  row={4} onChoose={this.props.onChoose}/>
+        <SeatRow  row={5} onChoose={this.props.onChoose}/>
+        <SeatRow  row={6} onChoose={this.props.onChoose}/>
+        <SeatRow  row={7} onChoose={this.props.onChoose}/>
         <br/><br/><br/>
       </div>
     );

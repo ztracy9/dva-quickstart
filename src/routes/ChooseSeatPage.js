@@ -1,6 +1,6 @@
 import React from 'react';
 import {Layout,Card,Row, Col,Divider,Button,List} from 'antd';
-import HomeLayout from '../layout/HomeLayout';
+import HomeLayout from '../layout/Header/HomeLayout';
 import ChooseSeat from '../components/seat/ChooseSeat'
 import { connect } from 'dva';
 import seatChosen from "../models/seatChosen";
@@ -11,20 +11,27 @@ class ChooseSeatPage extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
-      movie_info: {
-        title: '哈利波特与魔法石',
-        type: '剧情/奇幻'
-      },
+      movie_info:'',
       cinema_info: {
         cid: 1,
         name: '地中海影城',
         time: '15:30',
         room: 7
       },
-      seatlist: []
+      seatlist: [],//代表选中的座位
     }
   }
-
+  componentWillMount()
+  {
+    let tid = this.props.match.params.tid;
+    fetch('http://localhost:3000/movie/1')
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          movie_info: res
+        });
+      });
+  }
   chooseSeat(r,c){
     const { dispatch } = this.props;
     dispatch({
@@ -40,7 +47,7 @@ class ChooseSeatPage extends React.Component{
   }
 
   render(){
-    let {seatlist} = this.state;
+    let {seatlist,movie_info} = this.state;
     let showlist = seatlist.map(item=>
       <div style={{fontSize:15,border:'1px solid #ADD8E6',margin:5,width:100,alignSelf:'center',textAlign:'center'}}>
         {item.row}行{item.col}列
@@ -48,7 +55,7 @@ class ChooseSeatPage extends React.Component{
 
     return(
       <HomeLayout>
-
+        <div style={{padding:'30px 50px'}}>
             <Row style={{minheight:2000}}  gutter={16}>
               <Col span={18}>
                 <div style={{margin:'0px 0px 0px 70px'}}>
@@ -68,9 +75,9 @@ class ChooseSeatPage extends React.Component{
                     </Col>
                     <Col span={14}>
                       <div style={{fontWeight:'bold',fontSize:15}}>
-                        《哈利波特与火焰杯》<br/>
+                        《{movie_info.name}》<br/>
                       </div>
-                      剧情/奇幻<br/>
+                      {movie_info.movieType}<br/>
                       129分钟
                     </Col>
                   </Row>
@@ -96,7 +103,7 @@ class ChooseSeatPage extends React.Component{
 
               </Col>
             </Row>
-
+        </div>
       </HomeLayout>
     );
   }

@@ -1,6 +1,7 @@
 import { Layout,Card, Button,Icon,Radio } from 'antd';
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import request from '../../utils/request';
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
 
@@ -9,39 +10,34 @@ class MovieInfo extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
-      movie_info: ''
+      movie_info: '',
     };
   }
   componentWillMount () {
-    fetch('http://localhost:3000/movie/1')
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        this.setState({
-          movie_info: res
-        });
-      });
+  	let body = {mid:this.props.mid};
+    request('http://localhost:8080/movie/getById',JSON.stringify(body))
+    .then((res)=>{
+    	this.setState({
+    		movie_info:res
+    	});
+    });
   }
   handleClick(){
-    this.props.history.push("/cinema/1");
+    let mid = this.props.mid;
+    this.props.history.push("/cinema/"+mid);
   }
   render (){
     const {movie_info} = this.state;
     return(
       <Layout  style={{ padding: 24, minHeight: 260 }}>
-        <Sider>
-          <Card hoverable style={{ width: 220 }} cover={<img alt="example" src={require('../../assets/m1.jpg')} />}>
-            <Meta
-              title="xxxxxxxxxxxx"
-              description="www.instagram.com"
-            />
-          </Card>
+        <Sider style={{backgroundColor:'rgba(0,0,0,0)'}}>
+          <img alt="example " src={movie_info.poster} style={{width:220,height:320}}/>
         </Sider>
 
         <Content style={{ padding:'30px 30px 30px 80px'}}>
           <div style={{fontWeight:'bold',fontSize:20,lineHeight:'30%',padding:'0px 0px 20px 0px'}}>
-            <p>哈利波特与火焰杯</p>
-            <p>Harry Potter and the Goblet of Fire</p>
+            <p>{movie_info.name}</p>
+            <p>{movie_info.EnglishName}</p>
           </div>
 
          <div style={{fontSize:16,fontFamily:'微软雅黑',lineHeight:'70%'}}>

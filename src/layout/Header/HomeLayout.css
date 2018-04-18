@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Alex Brush';
+  src: url('../../font/Alex Brush ROB.ttf');
+}
+.brand{
+  	height: 50px;
+  	width: 10%;
+  	padding-top: 20px;
+  	margin-left: -10%;
+  	font-size: 3em;
+  	line-height: 20px;
+  	color: #fff !important;
+	font-family: 'Alex Brush', cursive;
+
+}
+.menuStyle{
+	width: 100%;
+	line-height: 64px;
+	display: flex;
+	justify-content: space-around;
+	background: #D2B48C;
+}
+.font{
+  font-size: 18px;
+  font-family: '微软雅黑';
+}

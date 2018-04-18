@@ -1,5 +1,8 @@
 {
   "private": true,
+  "theme": {
+    "primary-color": "#1DA57A"
+  },
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build",

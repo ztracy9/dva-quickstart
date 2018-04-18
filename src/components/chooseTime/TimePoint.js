@@ -1,10 +1,13 @@
 import React from 'react';
-import { Icon, Divider,Button, Cascader,Tabs,List,Row,Col} from 'antd';
+import { Icon, Divider,Button, Cascader,Tabs,Table,Row,Col} from 'antd';
 import {withRouter} from 'react-router-dom';
+import TimeButton from './TimeButton';
+import moment from 'moment';
+import request from '../../utils/request';
+
 const TabPane = Tabs.TabPane;
 
 class TimePoint extends React.Component {
-
   constructor (props) {
     super(props);
     this.state = {
@@ -20,29 +23,32 @@ class TimePoint extends React.Component {
     this.props.history.push("/chooseSeat/1");
   }
   getCinemaInfo(cid){
-    console.log(cid);
-    fetch('http://localhost:3000/cinema/'+cid)
-      .then(res => res.json())
-      .then(res => {
+    let body={cid:cid};
+    request('http://localhost:8080/cinema/getById',JSON.stringify(body))
+      .then((res)=>{
         this.setState({
-           cinemaName:res.name,
-           cinemaLocate:res.location
+          cinemaName:res.name,
+          cinemaLocate:res.address
         });
       });
   }
   //根据cid,mid,和日期获取时刻表
   getTimeList(cid,mid,tday){
-    fetch('http://localhost:3000/Time')
-      .then(res => res.json())
-      .then(res => {
+    let body={
+       cid:cid,
+       mid:mid,
+       day:tday,
+    };
+    request('http://localhost:8080/time/getTime',JSON.stringify(body))
+      .then((res)=>{
         this.setState({
-          TimeList: res
+          Timelist:res
         });
       });
   }
   componentWillMount () {
     const {mid,cid} = this.props;
-    let day = new Date();
+    let day = moment().format('YYYY-MM-DD');
     this.getTimeList(mid,cid,day);
     this.getCinemaInfo(cid);
   }
@@ -61,6 +67,22 @@ class TimePoint extends React.Component {
        arr[i] = now.getMonth()+1+"月"+now.getDate()+"日";
        now.setDate(now.getDate()+1);
      }
+     const columns = [{
+       title: '',
+       dataIndex: 'id',
+       render:(text, record)=>(
+         <div style={{fontWeight:'bold',fontSize:16}}>
+           <Row>
+             <Col span={6}>{record.startTime}</Col>
+             <Col span={6}>{record.room}号厅</Col>
+             <Col span={6}>{record.price}元</Col>
+             <Col span={6}>
+               <TimeButton id={record.id}/>
+             </Col>
+           </Row>
+         </div>
+       )
+     }];
      return(
        <div>
          <div>
@@ -68,8 +90,8 @@ class TimePoint extends React.Component {
            <p>{this.state.cinemaLocate}</p>
          </div>
          <div style={{padding:'30px 0px 0px 30px'}}>
-           <Tabs defaultActiveKey="1" onChange={this.DateChange.bind(this)}>
-             <TabPane tab={arr[0]} key="0"></TabPane>
+           <Tabs defaultActiveKey="1" onChange={this.DateChange.bind(this)} size="small">
+             <TabPane tab={arr[0]} key="0" ></TabPane>
              <TabPane tab={arr[1]} key="1"></TabPane>
              <TabPane tab={arr[2]} key="2"></TabPane>
              <TabPane tab={arr[3]} key="3"></TabPane>
@@ -77,25 +99,10 @@ class TimePoint extends React.Component {
            </Tabs>
          </div>
 
-         <div style={{padding:'0px 10px 0px 60px'}}>
+         <div style={{padding:'0px 100px 0px 30px'}}>
 
-           <List
-             dataSource={this.state.TimeList}
-             renderItem={item => (
-               <List.Item>
-                 <Row gutter={80}>
-                   <Col span={6} style={{fontWeight:'bold'}}>{item.startTime}</Col>
-                   <Col span={6}>{item.romm}号厅</Col>
-                   <Col span={6}>{item.price}元</Col>
-                   <Col span={6}>
-                     <Button type="primary" onClick={this.handleClick.bind(this)}>
-                       选座购票<Icon type="right" />
-                     </Button>
-                   </Col>
-                 </Row>
-               </List.Item>
-             )}
-           />
+             <Table rowKey={record => record.id} columns={columns} dataSource={this.state.TimeList}
+                    showHeader={false} pagination={{pageSize:5}}/>
 
          </div>
        </div>

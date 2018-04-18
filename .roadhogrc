@@ -1,0 +1,22 @@
+{
+  "entry": "src/index.js",
+  "theme": {
+    "primary-color": "#1DA57A"
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "true" }]
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+      ],
+      "publicPath":"./"
+    }
+  }
+}

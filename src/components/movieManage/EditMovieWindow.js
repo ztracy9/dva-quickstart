@@ -1,12 +1,13 @@
 import React from 'react';
 import { Modal, Button ,Input,Row,Col,Select, DatePicker} from 'antd';
 import PosterUpload from "./PosterUpload";
+import moment from 'moment';
 
 const { TextArea } = Input;
 const Option = Select.Option;
 const {  RangePicker} = DatePicker;
 
-const type_value = ['喜剧','剧情','动画','科幻','动作','悬疑','爱情','3D'];
+const type_value = ['喜剧','剧情','动画','科幻','动作','悬疑','3D'];
 const children=[];
 for (let i = 0; i < type_value.length; i++) {
   children.push(<Option key={i}>{type_value[i]}</Option>);
@@ -22,7 +23,7 @@ var info={
   movieType:[],
   propaganda:''
 };
-class AddMovieWindow extends React.Component{
+class EditMovieWindow extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
@@ -39,8 +40,14 @@ class AddMovieWindow extends React.Component{
         endTime:'',
         movieType:[],
         propaganda:''
-      }
+      },
+      disabled:true
     };
+  }
+  componentWillMount(){
+      this.setState({
+        movieInfo:this.props.movie
+      });
   }
   showModal () {
     this.setState({
@@ -104,13 +111,13 @@ class AddMovieWindow extends React.Component{
   NameChange(event){
     let id = event.target.id;
     if(id=='name')
-     info.name=event.target.value;
+      info.name=event.target.value;
     else if(id=='EnglishName')
       info.EnglishName=event.target.value;
     else if(id=='director')
       info.director=event.target.value;
     else if(id=='description')
-     info.description=event.target.value;
+      info.description=event.target.value;
     else if(id=='cast')
       info.cast=event.target.value;
     else if(id=='propaganda')
@@ -119,17 +126,16 @@ class AddMovieWindow extends React.Component{
       movieInfo:info
     });
   }
-  componentWillMount(){
-    console.log('in add');
-  }
   render(){
-    const { visible, confirmLoading,movieInfo} = this.state;
+    const { visible, confirmLoading,disabled,movieInfo} = this.state;
+    let btime = moment(movieInfo.beginTime);
+    let etime = moment(movieInfo.endTime);
     return(
       <div>
-        <Button onClick={this.showModal.bind(this)}>Add</Button>
+        <Button size='small'  type='primary' onClick={this.showModal.bind(this)}>编辑</Button>
         <Modal
-          title="添加影片"
-          visible={this.state.visible}
+          title="影片详情"
+          visible={visible}
           onOk={this.handleOk.bind(this)}
           onCancel={this.handleCancel.bind(this)}
           confirmLoading={confirmLoading}
@@ -140,26 +146,26 @@ class AddMovieWindow extends React.Component{
 
             <Col span={7}>
               <div style={{padding:'20px 0px 20px 10px'}}>
-              <PosterUpload/>
+                <PosterUpload/>
               </div>
             </Col>
 
             <Col span={17}>
               <div style={{padding:10}}>
-                电影名称<Input id="name" onChange={this.NameChange.bind(this)} />
+                电影名称<Input id="name" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.name} />
               </div>
               <div style={{padding:10}}>
-                英文名称<Input id="EnglishName" onChange={this.NameChange.bind(this)} />
+                英文名称<Input id="EnglishName" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.EnglishName}  />
               </div>
               <div style={{padding:10}}>
                 <Row gutter={32}>
                   <Col span={9}>
-                    导演：<Input id="director"  onChange={this.NameChange.bind(this)} />
+                    导演：<Input id="director"  onChange={this.NameChange.bind(this)} defaultValue={movieInfo.director}  />
                   </Col>
                   <Col span={15}>
                     类型：
                     <Select mode="multiple"  style={{ width: '100%' }} placeholder="Please select"
-                            onChange={this.typeChange.bind(this)} >
+                            onChange={this.typeChange.bind(this)} defaultValue={movieInfo.movieType}>
                       {children}
                     </Select>
                   </Col>
@@ -169,21 +175,21 @@ class AddMovieWindow extends React.Component{
 
           </Row>
           <div style={{padding:10}}>
-            演员表：<Input id='cast' onChange={this.NameChange.bind(this)}/>
+            演员表：<Input id='cast' onChange={this.NameChange.bind(this)} defaultValue={movieInfo.cast}/>
           </div>
           <div style={{padding:10}}>
-            宣传语：<Input id="propaganda" onChange={this.NameChange.bind(this)} />
+            宣传语：<Input id="propaganda" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.propaganda}  />
           </div>
           <div style={{padding:10}}>
             上映时间：
-            <DatePicker style={{marginRight:10}} id="begin" onChange={this.beginTimeChange.bind(this)} />
+            <DatePicker id="begin" onChange={this.beginTimeChange.bind(this)} defaultValue={btime}/>
             截止时间：
-            <DatePicker id="end" onChange={this.endTimeChnage.bind(this)}/>
+            <DatePicker id="end" onChange={this.endTimeChnage.bind(this)} defaultValue={etime}/>
           </div>
 
           <div style={{padding:10}}>
             剧情介绍：
-            <TextArea rows={4} id='description'  onChange={this.NameChange.bind(this)} />
+            <TextArea rows={4} id='description'  onChange={this.NameChange.bind(this)} defaultValue={movieInfo.description} />
           </div>
 
         </Modal>
@@ -191,4 +197,4 @@ class AddMovieWindow extends React.Component{
     );
   }
 }
-export default AddMovieWindow;
+export default EditMovieWindow;
