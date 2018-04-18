@@ -4,6 +4,7 @@ import HomeLayout from '../layout/Header/HomeLayout';
 import ChooseSeat from '../components/seat/ChooseSeat'
 import { connect } from 'dva';
 import seatChosen from "../models/seatChosen";
+import request from "../utils/request";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -23,14 +24,15 @@ class ChooseSeatPage extends React.Component{
   }
   componentWillMount()
   {
-    let tid = this.props.match.params.tid;
-    fetch('http://localhost:3000/movie/1')
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          movie_info: res
-        });
+    let body = {
+      tid:this.props.match.params.tid
+    };
+    request('http://localhost:8080/movie/getBytid',JSON.stringify(body))
+    .then((res)=>{
+      this.setState({
+        movie_info:res
       });
+    });
   }
   chooseSeat(r,c){
     const { dispatch } = this.props;
@@ -60,7 +62,7 @@ class ChooseSeatPage extends React.Component{
               <Col span={18}>
                 <div style={{margin:'0px 0px 0px 70px'}}>
                   <img style={{height:200,width:'70%',flexAlign:'centre'}} src={require('../assets/screen.png')}/>
-                  <ChooseSeat onChoose={this.chooseSeat.bind(this)}/>
+                  <ChooseSeat onChoose={this.chooseSeat.bind(this)} tid={this.props.match.params.tid}/>
                 </div>
               </Col>
 

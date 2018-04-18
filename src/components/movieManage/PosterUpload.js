@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Upload, Icon, message } from 'antd';
 
 function getBase64(img, callback) {
@@ -50,7 +50,7 @@ class PosterUpload extends React.Component {
     const imageUrl = this.state.imageUrl;
     return (
       <Upload
-        name="posterUpload"
+        name="img"
         listType="picture-card"
         showUploadList={false}
         action="http://localhost:8080/pic/uploadPost"

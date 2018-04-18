@@ -4,6 +4,7 @@ import AddMovieWindow from './AddMovieWindow';
 import EditMovieWindow from './EditMovieWindow';
 import MovieSearch from './MovieSearch';
 import ShowDetailWindow from './ShowDetailWindow';
+import request from '../../utils/request';
 
 const columns = [
 {
@@ -81,11 +82,12 @@ class MovieManageTable extends React.Component{
   }
 
   getMovieList(){
-    fetch('http://localhost:3000/movie')
+    fetch('http://localhost:8080/movie/getAll')
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         this.setState({
-          movie_list: res
+          movie_list: res.data.data
         });
       });
   }
@@ -103,29 +105,19 @@ class MovieManageTable extends React.Component{
     list = list.filter(item=>item.name==m_name);
      this.setState({movie_list:list});
   }
-
+  onDelete(mid){
+    let body = {mid:mid};
+    request('http://localhost:8080/movie/delete',JSON.stringify(body))
+      .then((res)=>{
+        console.log(res);
+        this.getMovieList();
+      });
+  }
   handleDelete(){
     const keys = this.state.selectedRowKeys;
-    let delList = [];
     for(let k in keys){
-      let item = {id:keys[k]};
-      delList.push(item);
+      this.onDelete(keys[k]);
     }
-    console.log(delList);
-/*
-    fetch('http://localhost:3000/movie',{
-      method:'delete',
-      body: JSON.stringify({
-        delList
-      }),
-      headers: {
-      'Content-Type': 'application/json'
-    }
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        });*/
   }
   render(){
     const { loading, selectedRowKeys,movie_list } = this.state;

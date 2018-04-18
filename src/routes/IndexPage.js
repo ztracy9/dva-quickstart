@@ -4,20 +4,16 @@ import styles from './IndexPage.css';
 import request from '../utils/request';
 function handleClick(){
   let body =  {
-    email: "329@",
-    password: "111"
+    email: "11111",
+    password: "11111"
   };
   console.log(body);
   request('http://localhost:8080/user/login',JSON.stringify(body))
     .then((data)=>{console.log(data)});
 }
 function h2 (){
-  let body={cid:1};
-  console.log(body);
-  request('http://localhost:8080/cinema/getByCity',JSON.stringify(body))
-    .then((res)=>{
-      console.log(res);
-    });
+  let t = sessionStorage.getItem('access_token');
+  alert(t);
 }
 function IndexPage() {
   return (

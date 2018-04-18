@@ -53,8 +53,9 @@ class TimePoint extends React.Component {
     this.getCinemaInfo(cid);
   }
   DateChange(key) {
-    var now = new Date();
-    now.setDate(now.getDate()+key);//now represent the chosen date
+    var now = moment();
+    now.add(parseInt(key),'days');
+    now = now.format('YYYY-MM-DD');
     this.getTimeList(this.props.mid,this.props.cid,now);
   }
    render(){
@@ -69,15 +70,15 @@ class TimePoint extends React.Component {
      }
      const columns = [{
        title: '',
-       dataIndex: 'id',
+       dataIndex: 'time_id',
        render:(text, record)=>(
          <div style={{fontWeight:'bold',fontSize:16}}>
            <Row>
-             <Col span={6}>{record.startTime}</Col>
-             <Col span={6}>{record.room}号厅</Col>
-             <Col span={6}>{record.price}元</Col>
+             <Col span={6}>{record.start_time}</Col>
+             <Col span={6}>{record.hall_number}号厅</Col>
+             <Col span={6}>{record.cost}元</Col>
              <Col span={6}>
-               <TimeButton id={record.id}/>
+               <TimeButton id={record.time_id}/>
              </Col>
            </Row>
          </div>
@@ -101,7 +102,7 @@ class TimePoint extends React.Component {
 
          <div style={{padding:'0px 100px 0px 30px'}}>
 
-             <Table rowKey={record => record.id} columns={columns} dataSource={this.state.TimeList}
+             <Table rowKey={record => record.time_id} columns={columns} dataSource={this.state.TimeList}
                     showHeader={false} pagination={{pageSize:5}}/>
 
          </div>

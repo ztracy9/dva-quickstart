@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button ,Input,Row,Col,Select, DatePicker} from 'antd';
 import PosterUpload from "./PosterUpload";
+import request from '../../utils/request';
 
 const { TextArea } = Input;
 const Option = Select.Option;
@@ -13,7 +14,7 @@ for (let i = 0; i < type_value.length; i++) {
 }
 var info={
   name:'',
-  EnglishName:'',
+  englishname:'',
   director:'',
   cast:'',
   description:'',
@@ -31,7 +32,7 @@ class AddMovieWindow extends React.Component{
 
       movieInfo:{
         name:'',
-        EnglishName:'',
+        englishname :'',
         director:'',
         cast:'',
         description:'',
@@ -49,30 +50,14 @@ class AddMovieWindow extends React.Component{
   }
   handleOk = (e) => {
     this.setState({ confirmLoading: true});
-    fetch('http://localhost:3000/movie', {
-      method: 'post',
-      // 使用fetch提交的json数据需要使用JSON.stringify转换为字符串
-      body: JSON.stringify(this.state.movieInfo),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // 当添加成功时，返回的json对象中应包含一个有效的id字段
-        // 所以可以使用res.id来判断添加是否成功
-        if (res.id) {
-          alert('添加电影成功');
-        } else {
-          alert('添加失败');
-        }
-        this.setState({
-          visible: false,
-          confirmLoading:false
+    let body = this.state.movieInfo;
+    console.log(body);
+    request('http://localhost:8080/movie/add',JSON.stringify(body))
+      .then((res)=>{
+           console.log(res);
         });
-      })
-      .catch((err) => console.error(err));
   }
+
   handleCancel = (e) => {
     this.setState({
       visible: false,
@@ -84,7 +69,7 @@ class AddMovieWindow extends React.Component{
       movieInfo:info
     });
   }
-  endTimeChnage(date,dateString){
+  endTimeChange(date,dateString){
     info.endTime=dateString;
     this.setState({
       movieInfo:info
@@ -106,7 +91,7 @@ class AddMovieWindow extends React.Component{
     if(id=='name')
      info.name=event.target.value;
     else if(id=='EnglishName')
-      info.EnglishName=event.target.value;
+      info.englishname = event.target.value;
     else if(id=='director')
       info.director=event.target.value;
     else if(id=='description')
@@ -120,7 +105,7 @@ class AddMovieWindow extends React.Component{
     });
   }
   componentWillMount(){
-    console.log('in add');
+
   }
   render(){
     const { visible, confirmLoading,movieInfo} = this.state;
@@ -178,14 +163,13 @@ class AddMovieWindow extends React.Component{
             上映时间：
             <DatePicker style={{marginRight:10}} id="begin" onChange={this.beginTimeChange.bind(this)} />
             截止时间：
-            <DatePicker id="end" onChange={this.endTimeChnage.bind(this)}/>
+            <DatePicker id="end" onChange={this.endTimeChange.bind(this)}/>
           </div>
 
           <div style={{padding:10}}>
             剧情介绍：
             <TextArea rows={4} id='description'  onChange={this.NameChange.bind(this)} />
           </div>
-
         </Modal>
       </div>
     );

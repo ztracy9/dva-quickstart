@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { connect } from 'dva';
+import request from '../../utils/request';
 import pic1 from '../../assets/seat.png';
 import pic2 from '../../assets/seat2.png';//green
 import pic3 from '../../assets/seat3.png';//red
@@ -13,16 +14,12 @@ class Seat extends React.Component{
     }
   }
   componentWillMount(){
-    var forbiddenSeat=[
-      {
-        row:3,
-        col:5
-      },
-      {
-        row:4,
-        col:6
-      }
-    ];
+    let body = {tid:this.props.tid};
+    let forbiddenSeat = [];
+    request('http://localhost:8080/time/getSaledSeat',JSON.stringify(body))
+     .then((res)=>{
+        forbiddenSeat = res;
+    });
     const{row,col} = this.props;
     for(let i in forbiddenSeat){
       if(forbiddenSeat[i].row==row&&forbiddenSeat[i].col==col)
