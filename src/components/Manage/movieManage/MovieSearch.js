@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select,Icon } from 'antd';
 import querystring from 'querystring';
-import request from '../../utils/request';
+import request from '../../../utils/request';
 const Option = Select.Option;
 
 let timeout;

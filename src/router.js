@@ -1,29 +1,29 @@
 import React from 'react';
-import Products from './routes/Products';
 import { Router, Route, Switch } from 'dva/router';
-
-import IndexPage from './routes/IndexPage';
 import movieDetailPage from "./routes/MovieDetailPage";
 import CinemaChoosePage from "./routes/CinemaChoosePage";
 import TimePage from "./routes/TimePage";
 import ChooseSeatPage from "./routes/ChooseSeatPage";
-import MovieManagePage from "./routes/MovieManagePage";
-import UserTable from "./components/UserTable/UserTable";
-import CinemaManagePage from "./routes/CinemaManagePage";
+import HomePage from './routes/HomePage';
+import Privacy from './routes/Privacy';
+import Movie from './routes/Movie';
+import Register from './routes/Register';
+import Management from './routes/Management';
 
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={IndexPage} />
-        <Route path="/products" exact component={Products} />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/movie" component={Movie} />
+        <Route path="/register" component={Register} />
+        <Route path="/manage" component={Management} />
+
         <Route path="/movieDetail/:mid" exact component={movieDetailPage} />
         <Route path="/cinema/:mid" exact component={CinemaChoosePage}/>
         <Route path="/timelist/:mid/:cid" exact component={TimePage}/>
         <Route path="/chooseSeat/:tid" exact component={ChooseSeatPage}/>
-        <Route path="/manage" exact component={MovieManagePage}/>
-        <Route path="/user" exact component={UserTable}/>
-        <Route path="/CinemaManage" exact component={CinemaManagePage}/>
       </Switch>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Layout,Card,Row, Col,Divider,Button,List,message} from 'antd';
+import {withRouter} from 'react-router-dom';
 import HomeLayout from '../layout/Header/HomeLayout';
 import ChooseSeat from '../components/seat/ChooseSeat'
 import { connect } from 'dva';
@@ -66,7 +67,7 @@ class ChooseSeatPage extends React.Component{
     }
     let body={
       "tid":this.props.match.params.tid,
-      "uid":1,
+      "uid":sessionStorage.getItem('userId'),
       "cnt":cnt,
       "seat":this.state.seatlist,
       "money":cnt*this.state.cost
@@ -78,6 +79,7 @@ class ChooseSeatPage extends React.Component{
            if(res.code==200)
            {
              message.success('购票成功')
+             this.props.history.push("/privacy");
            }
            else
            {

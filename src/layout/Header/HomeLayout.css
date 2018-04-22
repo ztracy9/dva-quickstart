@@ -1,15 +1,15 @@
-@font-face {
-  font-family: 'Alex Brush';
+@font-face{
+  font-family:'Alex Brush';
   src: url('../../font/Alex Brush ROB.ttf');
 }
 .brand{
-  	height: 50px;
-  	width: 10%;
-  	padding-top: 20px;
-  	margin-left: -10%;
-  	font-size: 3em;
-  	line-height: 20px;
-  	color: #fff !important;
+  height: 50px;
+  width: 10%;
+  padding-top: 20px;
+  margin-left: -10%;
+  font-size: 3em;
+  line-height: 20px;
+  color: #fff !important;
 	font-family: 'Alex Brush', cursive;
 
 }

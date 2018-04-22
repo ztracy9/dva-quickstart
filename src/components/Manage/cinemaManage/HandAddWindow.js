@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button ,Input,Row,Col,Select,List,Icon,message} from 'antd';
-import request from '../../utils/request';
+import request from '../../../utils/request';
 const Option = Select.Option;
 class HandAddWindow extends React.Component {
   constructor(props) {

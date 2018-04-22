@@ -14,10 +14,11 @@ class PriHeader extends React.Component{
     	this.props.history.push("/");
     }else if(e.key==="2"){
     	this.props.history.push("/movie");
+    }else if(e.key==="3"){
+    	this.props.history.push("/privacy");
+    }else if(e.key==="5"){
+    	sessionStorage.removeItem('access_token');
     }
-  }
-  onClick=()=>{
-  	this.props.history.push("/privacy");
   }
 	render(){
 		return(
@@ -33,16 +34,11 @@ class PriHeader extends React.Component{
 						<Col span={6}><div style={{color:'white'}} className={styles.brand}>Mlife</div></Col>
 						<Col span={6}>
 						<Menu mode="horizontal" style={{ lineHeight: '64px',height:'65px',background:'black',color:'white'}} onClick={this.handleClick}>
-							<SubMenu title={<span className={styles.font} onClick={this.onClick}>个人中心</span>}>
-								<MenuItemGroup style={{background:'black'}}>
-									<Menu.Item key="31">我的资料</Menu.Item>
-									<Menu.Item key="31">我的账户</Menu.Item>
-									<Menu.Item key="31">我看过的电影</Menu.Item>
-								</MenuItemGroup>
-							</SubMenu>
-							<Menu.Item className={styles.font} key="5">
+							<Menu.Item className={styles.font} key="3">个人中心</Menu.Item>
+							<Menu.Item className={styles.font} key="4">
 								<Contact/>
 							</Menu.Item>
+							<Menu.Item className={styles.font} key="5">退出登录</Menu.Item>
 						</Menu>
 					</Col>
 				</Row>				

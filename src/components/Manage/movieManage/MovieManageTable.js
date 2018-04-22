@@ -4,7 +4,7 @@ import AddMovieWindow from './AddMovieWindow';
 import EditMovieWindow from './EditMovieWindow';
 import MovieSearch from './MovieSearch';
 import ShowDetailWindow from './ShowDetailWindow';
-import request from '../../utils/request';
+import request from '../../../utils/request';
 
 const columns = [
 {

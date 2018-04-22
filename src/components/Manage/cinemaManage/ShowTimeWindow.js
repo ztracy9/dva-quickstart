@@ -3,7 +3,7 @@ import { Modal, Button ,Input,Row,Col,Tabs,List,Card,Divider} from 'antd';
 import AddTimeWindow from './AddTimeWindow';
 import HandAddWindow from './HandAddWindow';
 import moment from 'moment';
-import request from '../../utils/request';
+import request from '../../../utils/request';
 const TabPane = Tabs.TabPane;
 //默认从两天后开始排片
 class ShowTimeWindow extends React.Component{

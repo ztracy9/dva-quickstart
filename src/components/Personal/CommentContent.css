@@ -1,0 +1,12 @@
+.line{
+	margin-left: -24px;
+	margin-top: 5%;
+	width: 400px;
+	border-top: solid 1px #DCDCDC;
+}
+.setButton{
+	margin-top: 2%;
+	padding-right: 2%;
+	text-align: center;
+	margin-bottom: -2%;
+}

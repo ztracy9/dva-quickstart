@@ -1,0 +1,16 @@
+.lay{
+	line-height: 220%;
+	padding-left: 40px;
+}
+.setPos{
+	width: 600px;
+}
+.pos{
+	padding-left: 50px;
+	padding-right: 100px;
+}
+.setAss{
+	padding-top: 18px;
+	display: flex;
+	justify-content: space-between;
+}

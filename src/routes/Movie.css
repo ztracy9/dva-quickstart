@@ -1,0 +1,28 @@
+.setHead{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	border-bottom:solid 3px #f2f2f2;
+	margin-bottom: 2%;
+}
+.setTitle{
+	font-size: 23px;
+	padding-top: 2%;
+}
+.setFlex{
+	width: 250px;
+	margin-left: 0%;
+	display: flex;
+	justify-content: space-between;
+}
+.film{
+	display: flex;
+	justify-content: space-around;
+}
+.img{
+	height: 250px;
+	width: 180px;
+}
+.will{
+	background: white;
+}

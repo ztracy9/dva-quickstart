@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import request from '../../utils/request';
+import { Form, Icon, Input, Button, Checkbox ,message} from 'antd';
 import {withRouter} from "react-router-dom";
 import styles from './LogContent.css';
 const FormItem = Form.Item;
@@ -8,9 +9,31 @@ const FormItem = Form.Item;
 class LogContent extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
+    const form = this.props.form;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        let body={
+          email:form.getFieldValue('userName'),
+          password:form.getFieldValue('password')
+        }
+        console.log(body);
+        request('http://localhost:8080/user/login',JSON.stringify(body))
+        .then((data)=>{
+          let a = sessionStorage.getItem('access_token');
+          if(a){
+            console.log('登录');
+            console.log(data);
+            message.success('登录成功!');            
+            if(data.isAdmin)
+              this.props.getStatus(true,"true");
+            else
+              this.props.getStatus(true,"false");
+            this.props.hideModal();
+          }else{
+            message.error('账号或密码不正确！');
+          }
+        });
       }
     });
   }
@@ -23,9 +46,9 @@ class LogContent extends React.Component {
       <Form onSubmit={this.handleSubmit} className={styles.loginForm}>
         <FormItem>
           {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入用户名！' }],
+            rules: [{ required: true, message: '请输入邮箱！' }],
           })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="邮箱" />
           )}
         </FormItem>
         <FormItem>

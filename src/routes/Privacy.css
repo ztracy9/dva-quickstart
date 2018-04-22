@@ -1,0 +1,21 @@
+.sider{
+	padding-top: 25px;
+}
+.setCircle{
+	width:70px;
+	height: 70px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.setPos{
+	padding-top:30px;
+	text-align: center;
+	padding-bottom: 30px;
+}
+.list{
+	padding-left: 50px;
+	color: black;
+}
+.pSet{
+	padding-top:0px;
+}

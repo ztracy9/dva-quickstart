@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button ,Input,Row,Col,Select, DatePicker,message} from 'antd';
 import PosterUpload from "./PosterUpload";
-import request from '../../utils/request';
+import request from '../../../utils/request';
 
 const { TextArea } = Input;
 const Option = Select.Option;
