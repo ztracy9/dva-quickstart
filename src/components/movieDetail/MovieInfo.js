@@ -5,7 +5,11 @@ import request from '../../utils/request';
 const { Header, Footer, Sider, Content } = Layout;
 const { Meta } = Card;
 
-
+function save5cast(cast){
+  let list=cast.split(',');
+  list.splice(5,list.length-1); //只保留5个主演
+  return list.join(',');
+}
 class MovieInfo extends React.Component{
   constructor (props) {
     super(props);
@@ -17,6 +21,8 @@ class MovieInfo extends React.Component{
   	let body = {mid:this.props.mid};
     request('http://localhost:8080/movie/getById',JSON.stringify(body))
     .then((res)=>{
+      let cast=res.cast;
+      res.cast=save5cast(cast);
     	this.setState({
     		movie_info:res
     	});
@@ -28,10 +34,12 @@ class MovieInfo extends React.Component{
   }
   render (){
     const {movie_info} = this.state;
+    let imgurl="http://localhost:8080"+movie_info.poster;
+
     return(
       <Layout  style={{ padding: 24, minHeight: 260 }}>
         <Sider style={{backgroundColor:'rgba(0,0,0,0)'}}>
-          <img alt="example " src={movie_info.poster} style={{width:220,height:320}}/>
+          <img alt="example " src={imgurl} style={{width:220,height:320}}/>
         </Sider>
 
         <Content style={{ padding:'30px 30px 30px 80px'}}>

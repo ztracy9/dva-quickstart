@@ -31,47 +31,52 @@ const options = [{
 const TabPane = Tabs.TabPane;
 
 class CinemaList extends React.Component{
-
   constructor (props) {
     super(props);
     this.state = {
-      city: 4,
+      city:'4',
       cinemaList:[],
+      day:'',
     };
   }
   componentWillMount(){
-    this.getCinema();
+    let day = moment().format('YYYY-MM-DD');
+    this.getCinema(day,4);
   }
 
-  //根据时间和电影获取影院信息
-  getCinema(){
-    let body={cid:1};
+  //根据时间和地址获取影院信息
+  getCinema(day,cid){
+    this.setState({day:day});
+    this.setState({city:cid});
+    let body={
+      cityid:cid,
+      mid:this.props.match.params.mid,
+      day:day,//先这么写,改day
+    };
     console.log(body);
-    request('http://localhost:8080/cinema/getByCity',JSON.stringify(body))
+    request('http://localhost:8080/cinema/getByMovieCityDate',JSON.stringify(body))
       .then((res)=>{
+       console.log(res);
         this.setState({
           cinemaList:res
         });
       });
   }
   changeCity(value,selectedOptions){
-    if(value.length==1)
-      this.setState({
-         city: 1
-      });
-    else{
-      this.setState({
-        city: value[1]
-      });
+    if(value.length==0)
+      return;
+    if(value.length==1) {
+      this.getCinema(this.state.day,1);
     }
-    this.getCinema();
+    else{
+      this.getCinema(this.state.day,value[1]);
+    }
   }
 
   DateChange(key) {
-     let day = moment().add(key,'day').format('YYYY-MM-DD');
-    //根据时间和地点还有mid获取影院列表
-    //console.log(day);
-    this.getCinema();
+     let t = parseInt(key);
+     let day = moment().add(t,'day').format('YYYY-MM-DD');
+     this.getCinema(day,this.state.city);
   }
 
   render(){
@@ -100,7 +105,7 @@ class CinemaList extends React.Component{
             </Col>
             <Col span={4}>
               <br/>
-              <CinemaButton mid={movie.mid} id={record.id}/>
+              <CinemaButton mid={movie.id} id={record.id}/>
             </Col>
           </Row>
         </div>
@@ -119,7 +124,7 @@ class CinemaList extends React.Component{
 
           <Divider>以下是搜寻到的结果</Divider>
           <div>
-            <Tabs defaultActiveKey="1" onChange={this.DateChange.bind(this)}>
+            <Tabs defaultActiveKey="0" onChange={this.DateChange.bind(this)}>
               <TabPane tab={arr[0]} key="0"></TabPane>
               <TabPane tab={arr[1]} key="1"></TabPane>
               <TabPane tab={arr[2]} key="2"></TabPane>

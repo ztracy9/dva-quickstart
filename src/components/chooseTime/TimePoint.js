@@ -18,10 +18,6 @@ class TimePoint extends React.Component {
     };
   }
 
-  //待写
-  handleClick(event){
-    this.props.history.push("/chooseSeat/1");
-  }
   getCinemaInfo(cid){
     let body={cid:cid};
     request('http://localhost:8080/cinema/getById',JSON.stringify(body))
@@ -39,24 +35,26 @@ class TimePoint extends React.Component {
        mid:mid,
        day:tday,
     };
+    console.log(body);
     request('http://localhost:8080/time/getTime',JSON.stringify(body))
       .then((res)=>{
+        console.log(res);//处理传过来的时间
         this.setState({
-          Timelist:res
+          TimeList:res
         });
       });
   }
   componentWillMount () {
     const {mid,cid} = this.props;
     let day = moment().format('YYYY-MM-DD');
-    this.getTimeList(mid,cid,day);
+    this.getTimeList(cid,mid,day);
     this.getCinemaInfo(cid);
   }
   DateChange(key) {
     var now = moment();
     now.add(parseInt(key),'days');
     now = now.format('YYYY-MM-DD');
-    this.getTimeList(this.props.mid,this.props.cid,now);
+    this.getTimeList(this.props.cid,this.props.mid,now);
   }
    render(){
      var now = new Date();
@@ -74,7 +72,7 @@ class TimePoint extends React.Component {
        render:(text, record)=>(
          <div style={{fontWeight:'bold',fontSize:16}}>
            <Row>
-             <Col span={6}>{record.start_time}</Col>
+             <Col span={6}>{moment(record.start_time).format('HH:mm')}</Col>
              <Col span={6}>{record.hall_number}号厅</Col>
              <Col span={6}>{record.cost}元</Col>
              <Col span={6}>
@@ -91,7 +89,7 @@ class TimePoint extends React.Component {
            <p>{this.state.cinemaLocate}</p>
          </div>
          <div style={{padding:'30px 0px 0px 30px'}}>
-           <Tabs defaultActiveKey="1" onChange={this.DateChange.bind(this)} size="small">
+           <Tabs defaultActiveKey="0" onChange={this.DateChange.bind(this)} size="small">
              <TabPane tab={arr[0]} key="0" ></TabPane>
              <TabPane tab={arr[1]} key="1"></TabPane>
              <TabPane tab={arr[2]} key="2"></TabPane>

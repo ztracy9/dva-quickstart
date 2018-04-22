@@ -2,6 +2,7 @@ import React from 'react';
 import { Table,Button,Row,Col,Input} from 'antd';
 import ShowTimeWindow from './ShowTimeWindow';
 const Search = Input.Search;
+const city=['','上海','杭州','南京','扬州'];
 const columns = [
   {
     title: '编号',
@@ -11,7 +12,7 @@ const columns = [
     dataIndex: 'name',
   },{
     title:'地址',
-    dataIndex: 'location'
+    dataIndex: 'address'
   },{
     title:'城市',
     dataIndex: 'city',
@@ -21,13 +22,20 @@ const columns = [
     },{
       text:'扬州',
       value:'扬州',
-    }],
+    },{
+      text:'南京',
+      value:'南京',
+    },{
+      text:'杭州',
+      value:'杭州',
+    }
+    ],
     onFilter: (value, record) => record.city == value,
   },{
     title: '操作',
     key:'action',
     render:(text, record)=>(
-      <ShowTimeWindow cinema={record.name}/>
+      <ShowTimeWindow cinema={record}/>
     )
   }
 ]
@@ -39,11 +47,24 @@ class CinemaManageTable extends React.Component{
     };
   }
   componentWillMount(){
-    fetch('http://localhost:3000/cinema')
+    let templist=[];
+    fetch('http://localhost:8080/cinema/getAll')
       .then(res => res.json())
       .then(res => {
+        console.log(res);
+        let data = res.data.data;
+        for(let i in data){
+          let temp = {
+            id:data[i].id,
+            name:data[i].name,
+            address:data[i].address,
+            city:city[data[i].cityId],
+          }
+          templist.push(temp);
+        }
+        console.log(templist);
         this.setState({
-          cinema_list: res
+          cinema_list:templist
         });
       });
   }

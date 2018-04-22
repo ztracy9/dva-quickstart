@@ -38,7 +38,7 @@ const columns = [
       text: '悬疑',
       value: '悬疑',
     }],
-    onFilter: (value, record) => record.movieType == value,
+    onFilter: (value, record) => record.movieType.search(value)!=-1,
 
 }, {
     title: '开始时间',
@@ -63,13 +63,18 @@ const columns = [
     key:'action',
     render:(text, record)=>(
       <Row>
-        <Col span={12}> <EditMovieWindow movie={record}/></Col>
+        <Col span={12}> <EditMovieWindow movie={record} /></Col>
         <Col span={12}> <ShowDetailWindow movie={record}/></Col>
       </Row>
     )
   },
 ];
 
+function save5cast(cast){
+  let list=cast.split(',');
+  list.splice(5,list.length-1); //只保留5个主演
+  return list.join(',');
+}
 
 class MovieManageTable extends React.Component{
   constructor (props) {
@@ -82,12 +87,19 @@ class MovieManageTable extends React.Component{
   }
 
   getMovieList(){
+    let result;
     fetch('http://localhost:8080/movie/getAll')
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        result=res.data.data;
+        for(let i in result){
+          let info = result[i];
+          result[i].cast=save5cast(info.cast);
+        }
+      })
+      .then(()=>{
         this.setState({
-          movie_list: res.data.data
+          movie_list: result
         });
       });
   }
@@ -109,7 +121,6 @@ class MovieManageTable extends React.Component{
     let body = {mid:mid};
     request('http://localhost:8080/movie/delete',JSON.stringify(body))
       .then((res)=>{
-        console.log(res);
         this.getMovieList();
       });
   }
@@ -118,6 +129,7 @@ class MovieManageTable extends React.Component{
     for(let k in keys){
       this.onDelete(keys[k]);
     }
+    this.state.selectedRowKeys = [];
   }
   render(){
     const { loading, selectedRowKeys,movie_list } = this.state;
@@ -136,7 +148,7 @@ class MovieManageTable extends React.Component{
               </Button>
             </Col>
             <Col span={3}>
-              <AddMovieWindow />
+              <AddMovieWindow flush={this.getMovieList.bind(this)}/>
             </Col>
             <Col>
               <MovieSearch handleSelect={this.onMovieSearch.bind(this)} getAll={this.getMovieList.bind(this)}/>

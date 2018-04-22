@@ -1,8 +1,9 @@
 import React from 'react';
-import {Layout,Card,Row, Col,Divider,Button,List} from 'antd';
+import {Layout,Card,Row, Col,Divider,Button,List,message} from 'antd';
 import HomeLayout from '../layout/Header/HomeLayout';
 import ChooseSeat from '../components/seat/ChooseSeat'
 import { connect } from 'dva';
+import moment from 'moment';
 import seatChosen from "../models/seatChosen";
 import request from "../utils/request";
 
@@ -14,12 +15,13 @@ class ChooseSeatPage extends React.Component{
     this.state = {
       movie_info:'',
       cinema_info: {
-        cid: 1,
-        name: '地中海影城',
-        time: '15:30',
-        room: 7
+        cid: '',
+        name: '',
+        time: '',
+        room: '',
       },
       seatlist: [],//代表选中的座位
+      cost:'',
     }
   }
   componentWillMount()
@@ -27,10 +29,19 @@ class ChooseSeatPage extends React.Component{
     let body = {
       tid:this.props.match.params.tid
     };
-    request('http://localhost:8080/movie/getBytid',JSON.stringify(body))
+    request('http://localhost:8080/time/getMovieByTimeId',JSON.stringify(body))
     .then((res)=>{
+      console.log(res);
+      let temp={
+        name:res.cinema.name,
+        cid:res.cinema.id,
+        time:moment(res.startTime).format('HH:mm'),
+        room:res.hallNumber
+      }
       this.setState({
-        movie_info:res
+        movie_info:res.movie,
+        cinema_info:temp,
+        cost:res.cost
       });
     });
   }
@@ -47,9 +58,36 @@ class ChooseSeatPage extends React.Component{
       seatlist:this.props.seatChosen.list
     });
   }
-
+  handleClick(){
+    let cnt=this.state.seatlist.length;
+    if(cnt==0){
+      message.warning('请先选择座位');
+      return;
+    }
+    let body={
+      "tid":this.props.match.params.tid,
+      "uid":1,
+      "cnt":cnt,
+      "seat":this.state.seatlist,
+      "money":cnt*this.state.cost
+    }
+    console.log(body);
+    request('http://localhost:8080/order/add',JSON.stringify(body))
+      .then((res)=>{
+           console.log(res);
+           if(res.code==200)
+           {
+             message.success('购票成功')
+           }
+           else
+           {
+              message.error('购票失败');
+           }
+      });
+  }
   render(){
-    let {seatlist,movie_info} = this.state;
+    let {seatlist,movie_info,cinema_info,cost} = this.state;
+    let imgurl="http://localhost:8080"+movie_info.poster;
     let showlist = seatlist.map(item=>
       <div style={{fontSize:15,border:'1px solid #ADD8E6',margin:5,width:100,alignSelf:'center',textAlign:'center'}}>
         {item.row}行{item.col}列
@@ -73,34 +111,40 @@ class ChooseSeatPage extends React.Component{
                 <div style={{padding:'25px 0px 10px 0px'}}>
                   <Row>
                     <Col span={8}>
-                      <img src={require('../assets/m1.jpg')} style={{height:110,width:80}}/>
+                      <img src={imgurl} style={{height:110,width:80}}/>
                     </Col>
                     <Col span={14}>
                       <div style={{fontWeight:'bold',fontSize:15}}>
                         《{movie_info.name}》<br/>
                       </div>
                       {movie_info.movieType}<br/>
-                      129分钟
+                      {movie_info.duration}分钟
                     </Col>
                   </Row>
                 </div>
                 <Divider/>
-                <div style={{fontSize:18,fontWeight:'bold',lineHeight:'90%',padding:10}}>
-                  <p>影院：xxx</p>
-                  <p>场次：xxx时间xx号厅</p>
-                  <p>
-
+                <div style={{fontSize:17,fontWeight:'bold',lineHeight:'100%',padding:10}}>
+                  <Row>
+                    <Col span={5}>影院：</Col>
+                    <Col span={19}>{cinema_info.name}</Col>
+                  </Row>
+                  <br/>
+                  <Row>
+                    <Col span={5}>场次：</Col>
+                    <Col span={19}>{cinema_info.time}  {cinema_info.room}号厅</Col>
+                  </Row>
+                  <br/>
                     <Row gutter={16}>
                       <Col span={6}>座位:</Col>
                       <Col span={18}>{showlist}</Col>
                     </Row>
+                    <br/>
 
-                  </p>
-                  <p>总计：0元</p>
+                  <p>总计：{this.state.seatlist.length*cost}元</p>
                 </div>
 
                 <div style={{alignSelf:'center',padding:'0px 0px 30px 0px'}}>
-                <Button type="primary">购买</Button>
+                <Button type="primary" onClick={this.handleClick.bind(this)}>购买</Button>
                 </div>
 
               </Col>

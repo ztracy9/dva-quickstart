@@ -7,6 +7,7 @@ class CinemaButton extends React.Component{
     super(props);
   }
   handleClick(event){
+    console.log(this.props);
     let id = event.target.id;
     this.props.history.push("/timelist/"+this.props.mid+"/"+id);
   }

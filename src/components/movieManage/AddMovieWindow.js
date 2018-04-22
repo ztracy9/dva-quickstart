@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button ,Input,Row,Col,Select, DatePicker} from 'antd';
+import { Modal, Button ,Input,Row,Col,Select, DatePicker,message} from 'antd';
 import PosterUpload from "./PosterUpload";
 import request from '../../utils/request';
 
@@ -20,8 +20,10 @@ var info={
   description:'',
   beginTime:'',
   endTime:'',
-  movieType:[],
-  propaganda:''
+  movieType:'',
+  poster:'',
+  country:'',
+  duration:'',
 };
 class AddMovieWindow extends React.Component{
   constructor (props) {
@@ -38,8 +40,10 @@ class AddMovieWindow extends React.Component{
         description:'',
         beginTime:'',
         endTime:'',
-        movieType:[],
-        propaganda:''
+        movieType:'',
+        poster:'',
+        country:'',
+        duration:'',
       }
     };
   }
@@ -55,12 +59,26 @@ class AddMovieWindow extends React.Component{
     request('http://localhost:8080/movie/add',JSON.stringify(body))
       .then((res)=>{
            console.log(res);
+           this.setState({ confirmLoading:false});
+           message.success('添加成功');
+           this.props.flush();//刷新表格
+        })
+      .then(()=>{
+        this.setState({
+          visible: false,
         });
+      });
   }
 
   handleCancel = (e) => {
     this.setState({
       visible: false,
+    });
+  }
+  getPosterUrl (imgUrl){
+    info.poster = imgUrl;
+    this.setState({
+      movieInfo:info
     });
   }
   beginTimeChange (date, dateString){
@@ -76,12 +94,14 @@ class AddMovieWindow extends React.Component{
     });
   }
   typeChange(value){
-    var list = [];
+    let type = '';
     for (let i in value){
+      if(i!=0)
+        type+=',';
       let a = parseInt(value[i]);
-      list.push(type_value[a]);
+      type += type_value[a];
     }
-    info.movieType=list;
+    info.movieType=type
     this.setState({
       movieInfo:info
     });
@@ -98,8 +118,10 @@ class AddMovieWindow extends React.Component{
      info.description=event.target.value;
     else if(id=='cast')
       info.cast=event.target.value;
-    else if(id=='propaganda')
-      info.propaganda=event.target.value;
+    else if(id=='country')
+      info.country = event.target.value;
+    else if(id=='duration')
+      info.duration = event.target.value;
     this.setState({
       movieInfo:info
     });
@@ -125,7 +147,7 @@ class AddMovieWindow extends React.Component{
 
             <Col span={7}>
               <div style={{padding:'20px 0px 20px 10px'}}>
-              <PosterUpload/>
+              <PosterUpload getPosterUrl={this.getPosterUrl.bind(this)}/>
               </div>
             </Col>
 
@@ -153,12 +175,22 @@ class AddMovieWindow extends React.Component{
             </Col>
 
           </Row>
+
+          <div style={{padding:10}}>
+            <Row gutter={32}>
+              <Col span={11}>
+                国家：<Input id="country"  onChange={this.NameChange.bind(this)} />
+              </Col>
+              <Col span={11}>
+                时长：<Input id="duration"  onChange={this.NameChange.bind(this)} />
+              </Col>
+            </Row>
+          </div>
+
           <div style={{padding:10}}>
             演员表：<Input id='cast' onChange={this.NameChange.bind(this)}/>
           </div>
-          <div style={{padding:10}}>
-            宣传语：<Input id="propaganda" onChange={this.NameChange.bind(this)} />
-          </div>
+
           <div style={{padding:10}}>
             上映时间：
             <DatePicker style={{marginRight:10}} id="begin" onChange={this.beginTimeChange.bind(this)} />

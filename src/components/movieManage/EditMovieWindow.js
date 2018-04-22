@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, Button ,Input,Row,Col,Select, DatePicker} from 'antd';
+import { Modal, Button ,Input,Row,Col,Select, DatePicker,message} from 'antd';
 import PosterUpload from "./PosterUpload";
 import moment from 'moment';
+import request from '../../utils/request';
 
 const { TextArea } = Input;
 const Option = Select.Option;
@@ -10,39 +11,19 @@ const {  RangePicker} = DatePicker;
 const type_value = ['喜剧','剧情','动画','科幻','动作','悬疑','3D'];
 const children=[];
 for (let i = 0; i < type_value.length; i++) {
-  children.push(<Option key={i}>{type_value[i]}</Option>);
+  children.push(<Option key={type_value[i]}>{type_value[i]}</Option>);
 }
-var info={
-  name:'',
-  EnglishName:'',
-  director:'',
-  cast:'',
-  description:'',
-  beginTime:'',
-  endTime:'',
-  movieType:[],
-  propaganda:''
-};
+
 class EditMovieWindow extends React.Component{
+
   constructor (props) {
     super(props);
     this.state = {
-      visible: false ,
+      visible: false,
       confirmLoading: false,
 
-      movieInfo:{
-        name:'',
-        EnglishName:'',
-        director:'',
-        cast:'',
-        description:'',
-        beginTime:'',
-        endTime:'',
-        movieType:[],
-        propaganda:''
-      },
-      disabled:true
-    };
+      movieInfo: '',
+    }
   }
   componentWillMount(){
       this.setState({
@@ -56,29 +37,14 @@ class EditMovieWindow extends React.Component{
   }
   handleOk = (e) => {
     this.setState({ confirmLoading: true});
-    fetch('http://localhost:3000/movie', {
-      method: 'post',
-      // 使用fetch提交的json数据需要使用JSON.stringify转换为字符串
-      body: JSON.stringify(this.state.movieInfo),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // 当添加成功时，返回的json对象中应包含一个有效的id字段
-        // 所以可以使用res.id来判断添加是否成功
-        if (res.id) {
-          alert('添加电影成功');
-        } else {
-          alert('添加失败');
-        }
-        this.setState({
-          visible: false,
-          confirmLoading:false
-        });
-      })
-      .catch((err) => console.error(err));
+    let body = this.state.movieInfo;
+    console.log(body);
+    request('http://localhost:8080/movie/update',JSON.stringify(body))
+      .then((res)=>{
+        console.log(res);
+        message.success('更新成功');
+        this.setState({ confirmLoading: false});
+      });
   }
   handleCancel = (e) => {
     this.setState({
@@ -86,50 +52,46 @@ class EditMovieWindow extends React.Component{
     });
   }
   beginTimeChange (date, dateString){
-    info.beginTime=dateString;
-    this.setState({
-      movieInfo:info
-    });
+    console.log(dateString);
+    this.state.movieInfo.beginTime=dateString;
   }
+
   endTimeChnage(date,dateString){
-    info.endTime=dateString;
-    this.setState({
-      movieInfo:info
-    });
+    this.state.movieInfo.endTime=dateString;
   }
   typeChange(value){
-    var list = [];
+    console.log(value);
+    let type = '';
     for (let i in value){
-      let a = parseInt(value[i]);
-      list.push(type_value[a]);
+      if(i!=0)
+        type+=',';
+      type += value[i];
     }
-    info.movieType=list;
-    this.setState({
-      movieInfo:info
-    });
+    this.state.movieInfo.movieType=type;
   }
   NameChange(event){
     let id = event.target.id;
     if(id=='name')
-      info.name=event.target.value;
+      this.state.movieInfo.name=event.target.value;
     else if(id=='EnglishName')
-      info.EnglishName=event.target.value;
+      this.state.movieInfo.englishname = event.target.value;
     else if(id=='director')
-      info.director=event.target.value;
+      this.state.movieInfo.director=event.target.value;
     else if(id=='description')
-      info.description=event.target.value;
+      this.state.movieInfo.description=event.target.value;
     else if(id=='cast')
-      info.cast=event.target.value;
-    else if(id=='propaganda')
-      info.propaganda=event.target.value;
-    this.setState({
-      movieInfo:info
-    });
+      this.state.movieInfo.cast=event.target.value;
+    else if(id=='country')
+      this.state.movieInfo.country = event.target.value;
+    else if(id=='duration')
+      this.state.movieInfo.duration = event.target.value;
   }
   render(){
     const { visible, confirmLoading,disabled,movieInfo} = this.state;
     let btime = moment(movieInfo.beginTime);
     let etime = moment(movieInfo.endTime);
+    let typeStr  = movieInfo.movieType;
+    let types = typeStr.split(',');
     return(
       <div>
         <Button size='small'  type='primary' onClick={this.showModal.bind(this)}>编辑</Button>
@@ -155,7 +117,7 @@ class EditMovieWindow extends React.Component{
                 电影名称<Input id="name" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.name} />
               </div>
               <div style={{padding:10}}>
-                英文名称<Input id="EnglishName" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.EnglishName}  />
+                英文名称<Input id="EnglishName" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.englishname}  />
               </div>
               <div style={{padding:10}}>
                 <Row gutter={32}>
@@ -165,7 +127,7 @@ class EditMovieWindow extends React.Component{
                   <Col span={15}>
                     类型：
                     <Select mode="multiple"  style={{ width: '100%' }} placeholder="Please select"
-                            onChange={this.typeChange.bind(this)} defaultValue={movieInfo.movieType}>
+                            onChange={this.typeChange.bind(this)} defaultValue={types}>
                       {children}
                     </Select>
                   </Col>
@@ -174,12 +136,21 @@ class EditMovieWindow extends React.Component{
             </Col>
 
           </Row>
+
+          <div style={{padding:10}}>
+            <Row gutter={32}>
+              <Col span={11}>
+                国家：<Input id="country"  onChange={this.NameChange.bind(this)} defaultValue={movieInfo.country} />
+              </Col>
+              <Col span={11}>
+                时长：<Input id="duration"  onChange={this.NameChange.bind(this)} defaultValue={movieInfo.duration}/>
+              </Col>
+            </Row>
+          </div>
           <div style={{padding:10}}>
             演员表：<Input id='cast' onChange={this.NameChange.bind(this)} defaultValue={movieInfo.cast}/>
           </div>
-          <div style={{padding:10}}>
-            宣传语：<Input id="propaganda" onChange={this.NameChange.bind(this)} defaultValue={movieInfo.propaganda}  />
-          </div>
+
           <div style={{padding:10}}>
             上映时间：
             <DatePicker id="begin" onChange={this.beginTimeChange.bind(this)} defaultValue={btime}/>

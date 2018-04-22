@@ -11,7 +11,7 @@ class MovieManagePage extends React.Component{
 
   render(){
     return(
-      <div style={{width:800,height:600,margin:40}}>
+      <div style={{width:870,height:600,margin:40}}>
         <MovieMangeTable/>
       </div>
     );

@@ -22,21 +22,22 @@ class PosterUpload extends React.Component {
     loading: false,
     imageUrl:'',
   };
-  handleChange = (info) => {
-    console.log(info.file);
 
-    if (info.file.status === 'uploading') {
-      console.log('uploading');
+  handleChange = (info) => {
+     if (info.file.status === 'uploading') {
       this.setState({loading: true});
       return;
     }
     if (info.file.status === 'done') {
-      console.log('done');
       // Get this url from response in real world.
-      getBase64(info.file.originFileObj, imageUrl => this.setState({
+      getBase64(info.file.originFileObj, (imageUrl) => {this.setState({
         imageUrl,
         loading: false,
-      }));
+      });
+      });
+      let resUrl = info.file.response.data.data;
+      let poster = "localhost:8080"+resUrl;
+      this.props.getPosterUrl(poster);
     }
   }
 

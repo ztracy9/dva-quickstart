@@ -22,13 +22,14 @@ class CinemaPage extends React.Component{
   }
   render(){
     const{movie}= this.state;
+    let imgurl="http://localhost:8080"+movie.poster;
     return (
      <HomeLayout>
          <div style={{padding:'30px 50px'}}>
           <Row >
             <Col span="6" style={{background:'black',display:'flex',flexDirection:'column',height:'600px'}} >
               <Card hoverable style={{ width: 262,alignSelf:'center',height:420}}
-                    cover={<img alt="example" src={movie.poster} style={{width:260,height:345}}/>}>
+                    cover={<img alt="example" src={imgurl} style={{width:260,height:345}}/>}>
                 <div style={{fontWeight:'bold',lineHeight:'40%'}}>
                 <p> 类型：{movie.movieType} </p>
                 <p> 时长：{movie.duration} </p>

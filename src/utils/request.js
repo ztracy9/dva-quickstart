@@ -33,17 +33,28 @@ export default function request(url,body) {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Access-Token': sessionStorage.getItem('access_token') || '' // 从sessionStorage中获取access token
+      'Access-Token': sessionStorage.getItem('access_token') || '', // 从sessionStorage中获取access tokeness
+      'Access-IsAdmin':sessionStorage.getItem('isAdmin')||'',
+      'User-Id':sessionStorage.getItem('userId')||'',
+      'Get-Avartar':sessionStorage.getItem('avatar')||''
     },
     body
   })
     .then(checkStatus)
     .then(parseJSON)
     .then( (data) => {
-      console.log(data);
-      let t = data.data.token
+      if(url=='http://localhost:8080/order/add')
+        return data;
+      let t = data.data.token;
       if(t){
         sessionStorage.setItem('access_token', data.data.token);
+        sessionStorage.setItem('avatar',"http://localhost:8080"+data.data.data.avatar);
+        sessionStorage.setItem('userId',data.data.data.id);
+        if(data.data.data.isAdmin){
+          sessionStorage.setItem('isAdmin','true');
+        }
+        else
+          sessionStorage.setItem('isAdmin','false');
       }
       return data.data.data;
     })

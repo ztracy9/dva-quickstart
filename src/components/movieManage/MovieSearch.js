@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select,Icon } from 'antd';
-import jsonp from 'fetch-jsonp';
 import querystring from 'querystring';
+import request from '../../utils/request';
 const Option = Select.Option;
 
 let timeout;
@@ -18,9 +18,12 @@ function fetch(value, callback) {
       code: 'utf-8',
       q: value,
     });
-    jsonp(`http://localhost:3000/movie?${str}`)
-      .then(response => response.json())
+    let body={
+      str:value
+    };
+    request('http://localhost:8080/movie/getByStr',JSON.stringify(body))
       .then((d) => {
+        console.log(d);
         if (currentValue === value) {
           const result = d;
           const data = [];

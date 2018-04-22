@@ -3,12 +3,11 @@ import { Menu, Icon ,Layout,Row,Col,Modal} from 'antd';
 import LogButton from './LogButton';
 import Contact from './Contact';
 import {withRouter} from "react-router-dom";
-import styles from './HomeLayout.css'; 
+import styles from './HomeLayout.css';
 const { Header, Content,Sider} = Layout;
 
 class LogHeader extends React.Component{
 	handleClick=(e)=>{
-		console.log('click',e);
 		if(e.key==="1"){
 			this.props.history.push("/");
 		}else if(e.key==="2"){
@@ -23,7 +22,7 @@ class LogHeader extends React.Component{
 				<Row>
 					<Col span={2}></Col>
 					<Col span={9}>
-						<Menu mode="horizontal" style={{ lineHeight: '64px',height:'65px',background:'black',color:'white'}} onClick={this.handleClick}>					
+						<Menu mode="horizontal" style={{ lineHeight: '64px',height:'65px',background:'black',color:'white'}} onClick={this.handleClick}>
 							<Menu.Item className={styles.font} key="1">首页</Menu.Item>
 							<Menu.Item className={styles.font} key="2">电影</Menu.Item>
 						</Menu>
@@ -40,7 +39,7 @@ class LogHeader extends React.Component{
 							</Menu.Item>
 						</Menu>
 					</Col>
-				</Row>				
+				</Row>
 			</Header>
 		);
 	}

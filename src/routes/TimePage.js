@@ -13,6 +13,7 @@ class TimePage extends React.Component{
   }
   componentWillMount(){
     let body={mid:this.props.match.params.mid};
+    console.log(body);
     request('http://localhost:8080/movie/getById',JSON.stringify(body))
       .then((res)=>{
         this.setState({
@@ -23,13 +24,14 @@ class TimePage extends React.Component{
   render(){
     const {mid,cid} = this.props.match.params;
     const{movie} = this.state;
+    let imgurl="http://localhost:8080"+movie.poster;
     return(
       <HomeLayout>
         <div style={{padding:'30px 50px'}}>
         <Row >
           <Col span="6" style={{background:'black',display:'flex',flexDirection:'column'}} >
             <Card hoverable style={{ width: 262,alignSelf:'center',height:420}}
-                  cover={<img alt="example" src={movie.poster} style={{width:260,height:345}}/>}>
+                  cover={<img alt="example" src={imgurl} style={{width:260,height:345}}/>}>
               <div style={{fontWeight:'bold',lineHeight:'40%'}}>
                 <p> 类型：{movie.movieType} </p>
                 <p> 时长：{movie.duration} </p>

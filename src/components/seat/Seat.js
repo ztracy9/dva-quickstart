@@ -10,34 +10,32 @@ class Seat extends React.Component{
     super(props);
     this.state={
       pic:pic1,
-      chosen:false
+      chosen:false,
+      forbiddenSeat:[],
     }
   }
   componentWillMount(){
     let body = {tid:this.props.tid};
-    let forbiddenSeat = [];
-    request('http://localhost:8080/time/getSaledSeat',JSON.stringify(body))
-     .then((res)=>{
-        forbiddenSeat = res;
-    });
     const{row,col} = this.props;
-    for(let i in forbiddenSeat){
-      if(forbiddenSeat[i].row==row&&forbiddenSeat[i].col==col)
-      {
-        this.setState({
-          pic:pic3
-        });
-      }
-    }
+    request('http://localhost:8080/time/getSaledSeat',JSON.stringify(body))
+      .then((res)=>{
+        for(let i in res){
+          if(res[i].col==col&&res[i].row==row)
+          {
+            this.setState({
+              pic:pic3
+            });
+          }
+        }
+      });
   }
   handleClick(){
     let row = this.props.row;
     let col = this.props.col;
-    this.props.choose(row,col);
-
     //每次点击之后改变图片颜色
     if(this.state.pic==pic3)
       return;
+    this.props.choose(row,col);
     if(this.state.pic==pic1)
     {
       this.setState({
