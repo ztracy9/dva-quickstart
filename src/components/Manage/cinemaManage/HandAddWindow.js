@@ -173,10 +173,14 @@ class HandAddWindow extends React.Component {
           <Row>
             <Col span={12}>
               <div style={{paddingLeft:10}}>
-                选择要排片的影厅
-                <Select  style={{ width: 120 }} onChange={this.hidChose.bind(this)}>
-                  {hidchidlren}
-                </Select>
+                <Row>
+                  <Col span={7}>选择影厅</Col>
+                  <Col span={17}>
+                    <Select  style={{ width: 120 }} onChange={this.hidChose.bind(this)}>
+                      {hidchidlren}
+                    </Select>
+                  </Col>
+                </Row>
               </div>
             </Col>
             <Col span={12}>

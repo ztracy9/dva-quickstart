@@ -141,10 +141,10 @@ class MovieManageTable extends React.Component{
     return(
       <div>
         <div style={{ marginBottom: 16 }}>
-          <Row>
+          <Row style={{width:750}}>
             <Col span={2}>
               <Button type="primary"  disabled={!hasSelected} loading={loading} onClick={this.handleDelete.bind(this)}>
-                Delete
+                删除
               </Button>
             </Col>
             <Col span={3}>

@@ -26,6 +26,10 @@ class HistoryMovie extends React.Component{
     		if(data){
     		  list = data;
     			for(let i=0;i<data.length;i++){
+    			  if(data[i].description.length>300)
+            {
+              list[i].description = data[i].description.substr(0,290)+"......";
+            }
     				  let body={
 						  mid:data[i].id,
 						  uid:a

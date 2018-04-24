@@ -47,6 +47,7 @@ class ChooseSeatPage extends React.Component{
     });
   }
   chooseSeat(r,c){
+    console.log(r+" "+c);
     const { dispatch } = this.props;
     dispatch({
       type:'seatChosen/chosen',

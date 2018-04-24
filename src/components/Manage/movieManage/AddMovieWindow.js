@@ -133,7 +133,7 @@ class AddMovieWindow extends React.Component{
     const { visible, confirmLoading,movieInfo} = this.state;
     return(
       <div>
-        <Button onClick={this.showModal.bind(this)}>Add</Button>
+        <Button onClick={this.showModal.bind(this)}>添加</Button>
         <Modal
           title="添加影片"
           visible={this.state.visible}
