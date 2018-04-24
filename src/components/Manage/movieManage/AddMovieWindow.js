@@ -147,7 +147,7 @@ class AddMovieWindow extends React.Component{
 
             <Col span={7}>
               <div style={{padding:'20px 0px 20px 10px'}}>
-              <PosterUpload getPosterUrl={this.getPosterUrl.bind(this)}/>
+              <PosterUpload mode='add' getPosterUrl={this.getPosterUrl.bind(this)}/>
               </div>
             </Col>
 

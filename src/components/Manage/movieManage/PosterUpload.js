@@ -42,13 +42,20 @@ class PosterUpload extends React.Component {
   }
 
   render() {
+    let show='';
     const uploadButton = (
       <div>
         <Icon style={{height:'150px',width:'100px'}} type={this.state.loading ? 'loading' : 'plus'}/>
         <div className="ant-upload-text">Upload</div>
       </div>
     );
-    const imageUrl = this.state.imageUrl;
+    let  imageUrl = this.state.imageUrl;
+    if(this.props.mode=="edit"&&imageUrl=='')
+    {
+      imageUrl = "http://localhost:8080"+this.props.src;
+    }
+
+    console.log( imageUrl);
     return (
       <Upload
         name="img"

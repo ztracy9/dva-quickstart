@@ -2,50 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63e54517-a423-4ea5-a3e0-ee6906cce015" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/cinemaManage/ShowTimeWindow.js" afterPath="$PROJECT_DIR$/src/components/Manage/cinemaManage/ShowTimeWindow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/movieManage/MovieManageTable.js" afterPath="$PROJECT_DIR$/src/components/Manage/movieManage/MovieManageTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js" afterPath="$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js" afterPath="$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js" afterPath="$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js" afterPath="$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js" afterPath="$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Account.css" afterPath="$PROJECT_DIR$/src/components/Personal/Account.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Account.js" afterPath="$PROJECT_DIR$/src/components/Personal/Account.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/AccountBind.js" afterPath="$PROJECT_DIR$/src/components/Personal/AccountBind.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/AllTicket.js" afterPath="$PROJECT_DIR$/src/components/Personal/AllTicket.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/BindContent.js" afterPath="$PROJECT_DIR$/src/components/Personal/BindContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/ChangeAccount.js" afterPath="$PROJECT_DIR$/src/components/Personal/ChangeAccount.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Comment.js" afterPath="$PROJECT_DIR$/src/components/Personal/Comment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/CommentContent.css" afterPath="$PROJECT_DIR$/src/components/Personal/CommentContent.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/CommentContent.js" afterPath="$PROJECT_DIR$/src/components/Personal/CommentContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/FormPassword.js" afterPath="$PROJECT_DIR$/src/components/Personal/FormPassword.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/HistoryMovie.css" afterPath="$PROJECT_DIR$/src/components/Personal/HistoryMovie.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/HistoryMovie.js" afterPath="$PROJECT_DIR$/src/components/Personal/HistoryMovie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/NotSee.js" afterPath="$PROJECT_DIR$/src/components/Personal/NotSee.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Password.js" afterPath="$PROJECT_DIR$/src/components/Personal/Password.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Select.js" afterPath="$PROJECT_DIR$/src/components/Personal/Select.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Setting.css" afterPath="$PROJECT_DIR$/src/components/Personal/Setting.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/Setting.js" afterPath="$PROJECT_DIR$/src/components/Personal/Setting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Personal/UploadAvatar.js" afterPath="$PROJECT_DIR$/src/components/Personal/UploadAvatar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/chooseTime/TimePoint.js" afterPath="$PROJECT_DIR$/src/components/chooseTime/TimePoint.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/movieDetail/CommentShow.js" afterPath="$PROJECT_DIR$/src/components/movieDetail/CommentShow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/movieDetail/MovieInfo.js" afterPath="$PROJECT_DIR$/src/components/movieDetail/MovieInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/AdminHeader.js" afterPath="$PROJECT_DIR$/src/layout/Header/AdminHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/Contact.js" afterPath="$PROJECT_DIR$/src/layout/Header/Contact.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/ContactContent.css" afterPath="$PROJECT_DIR$/src/layout/Header/ContactContent.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/ContactContent.js" afterPath="$PROJECT_DIR$/src/layout/Header/ContactContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/HomeLayout.js" afterPath="$PROJECT_DIR$/src/layout/Header/HomeLayout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/LogButton.js" afterPath="$PROJECT_DIR$/src/layout/Header/LogButton.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/LogContent.css" afterPath="$PROJECT_DIR$/src/layout/Header/LogContent.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/LogContent.js" afterPath="$PROJECT_DIR$/src/layout/Header/LogContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/LogHeader.js" afterPath="$PROJECT_DIR$/src/layout/Header/LogHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layout/Header/PriHeader.js" afterPath="$PROJECT_DIR$/src/layout/Header/PriHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/ChooseSeatPage.js" afterPath="$PROJECT_DIR$/src/routes/ChooseSeatPage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/CinemaChoosePage.js" afterPath="$PROJECT_DIR$/src/routes/CinemaChoosePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/HomePage.css" afterPath="$PROJECT_DIR$/src/routes/HomePage.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/HomePage.js" afterPath="$PROJECT_DIR$/src/routes/HomePage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/Management.js" afterPath="$PROJECT_DIR$/src/routes/Management.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/Movie.js" afterPath="$PROJECT_DIR$/src/routes/Movie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/Privacy.js" afterPath="$PROJECT_DIR$/src/routes/Privacy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/routes/TimePage.js" afterPath="$PROJECT_DIR$/src/routes/TimePage.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,18 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CommentContent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Personal/CommentContent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MovieManageTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/MovieManageTable.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -81,37 +32,89 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShowMovie.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Movie/ShowMovie.js">
+      <file leaf-file-name="Management.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/routes/Management.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="36" column="97" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="97" />
+            <state relative-caret-position="177">
+              <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seatChosen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/models/seatChosen.js">
+      <file leaf-file-name="Movie.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/routes/Movie.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="142" column="39" lean-forward="false" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CinemaList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/chooseCinema/CinemaList.js">
+      <file leaf-file-name="UserTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2141">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="43" />
+            <state relative-caret-position="409">
+              <caret line="299" column="12" lean-forward="true" selection-start-line="299" selection-start-column="12" selection-end-line="299" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimePoint.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditMovieWindow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="65" column="18" lean-forward="true" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PosterUpload.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddMovieWindow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="82" column="3" lean-forward="true" selection-start-line="77" selection-start-column="2" selection-end-line="82" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowDetailWindow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="47" column="73" lean-forward="false" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Privacy.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/routes/Privacy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="69">
+              <caret line="103" column="59" lean-forward="true" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimePoint.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/chooseTime/TimePoint.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="317">
@@ -146,6 +149,8 @@
       <find>showm</find>
       <find>选</find>
       <find>handle</find>
+      <find>table</find>
+      <find>poster</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,7 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/routes/IndexPage.js" />
         <option value="$PROJECT_DIR$/src/layout/Header/LogHeader.js" />
         <option value="$PROJECT_DIR$/src/components/chooseCinema/CinemaButton.js" />
@@ -177,15 +181,12 @@
         <option value="$PROJECT_DIR$/src/components/seat/SeatRow.js" />
         <option value="$PROJECT_DIR$/src/utils/request.js" />
         <option value="$PROJECT_DIR$/src/layout/Header/HomeLayout.css" />
-        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js" />
-        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js" />
         <option value="$PROJECT_DIR$/src/components/Manage/movieManage/MovieSearch.js" />
         <option value="$PROJECT_DIR$/src/components/Manage/cinemaManage/AddTimeWindow.js" />
         <option value="$PROJECT_DIR$/src/components/Manage/cinemaManage/HandAddWindow.js" />
         <option value="$PROJECT_DIR$/src/router.js" />
         <option value="$PROJECT_DIR$/src/components/Movie/ShowMovie.js" />
         <option value="$PROJECT_DIR$/src/components/Movie/SearchInput.js" />
-        <option value="$PROJECT_DIR$/src/routes/Management.js" />
         <option value="$PROJECT_DIR$/src/components/Personal/NotSee.js" />
         <option value="$PROJECT_DIR$/src/components/Personal/AllTicket.js" />
         <option value="$PROJECT_DIR$/src/routes/CinemaChoosePage.js" />
@@ -193,18 +194,22 @@
         <option value="$PROJECT_DIR$/src/routes/ChooseSeatPage.js" />
         <option value="$PROJECT_DIR$/src/routes/HomePage.css" />
         <option value="$PROJECT_DIR$/src/layout/Header/HomeLayout.js" />
-        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js" />
-        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js" />
         <option value="$PROJECT_DIR$/src/components/Manage/cinemaManage/ShowTimeWindow.js" />
         <option value="$PROJECT_DIR$/src/routes/HomePage.js" />
         <option value="$PROJECT_DIR$/src/components/movieDetail/MovieInfo.js" />
         <option value="$PROJECT_DIR$/src/components/Personal/HistoryMovie.js" />
         <option value="$PROJECT_DIR$/src/routes/Privacy.js" />
-        <option value="$PROJECT_DIR$/src/routes/Movie.js" />
         <option value="$PROJECT_DIR$/src/components/movieDetail/CommentShow.js" />
         <option value="$PROJECT_DIR$/src/components/Personal/CommentContent.js" />
         <option value="$PROJECT_DIR$/src/components/Manage/movieManage/MovieManageTable.js" />
         <option value="$PROJECT_DIR$/src/components/chooseTime/TimePoint.js" />
+        <option value="$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js" />
+        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js" />
+        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js" />
+        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js" />
+        <option value="$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js" />
+        <option value="$PROJECT_DIR$/src/routes/Management.js" />
+        <option value="$PROJECT_DIR$/src/routes/Movie.js" />
       </list>
     </option>
   </component>
@@ -277,14 +282,6 @@
               <item name="dva-quickstart" type="b2602c69:ProjectViewProjectNode" />
               <item name="dva-quickstart" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Manage" type="462c0819:PsiDirectoryNode" />
-              <item name="movieManage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dva-quickstart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dva-quickstart" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -298,12 +295,6 @@
               <item name="dva-quickstart" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dva-quickstart" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dva-quickstart" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -415,12 +406,12 @@
       <workItem from="1524365005216" duration="12602000" />
       <workItem from="1524407876153" duration="132000" />
       <workItem from="1524492978271" duration="1794000" />
-      <workItem from="1524540983170" duration="13734000" />
+      <workItem from="1524540983170" duration="16469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="463276000" />
+    <option name="totallyTimeSpent" value="466011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -482,7 +473,7 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -523,13 +514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -633,7 +617,7 @@
         <state relative-caret-position="295">
           <caret line="25" column="3" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="25" selection-end-column="3" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -643,7 +627,7 @@
         <state relative-caret-position="381">
           <caret line="22" column="3" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -680,40 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="48" column="24" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2052">
-          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1522">
-          <caret line="82" column="3" lean-forward="true" selection-start-line="82" selection-start-column="3" selection-end-line="82" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="59" column="7" lean-forward="true" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Manage/cinemaManage/ShowTimeWindow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -744,24 +694,6 @@
           <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Management.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="46" column="14" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="46" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Privacy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="123" column="87" lean-forward="false" selection-start-line="123" selection-start-column="87" selection-end-line="123" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -803,7 +735,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -813,16 +745,8 @@
         <state relative-caret-position="-29">
           <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
           <folding>
-            <element signature="e#0#65#0" expanded="true" />
+            <element signature="e#0#65#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/Movie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="109" column="51" lean-forward="false" selection-start-line="109" selection-start-column="51" selection-end-line="109" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -839,7 +763,7 @@
         <state relative-caret-position="430">
           <caret line="34" column="35" lean-forward="false" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -872,6 +796,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Privacy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="103" column="59" lean-forward="true" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Manage/UserManage/UserTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="299" column="12" lean-forward="true" selection-start-line="299" selection-start-column="12" selection-end-line="299" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/ShowDetailWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="47" column="73" lean-forward="false" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/AddMovieWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="82" column="3" lean-forward="true" selection-start-line="77" selection-start-column="2" selection-end-line="82" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/EditMovieWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="65" column="18" lean-forward="true" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Manage/movieManage/PosterUpload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Management.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="30" column="45" lean-forward="true" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/Movie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="142" column="39" lean-forward="false" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
           <folding />
         </state>
       </provider>

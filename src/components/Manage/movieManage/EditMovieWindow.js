@@ -21,7 +21,6 @@ class EditMovieWindow extends React.Component{
     this.state = {
       visible: false,
       confirmLoading: false,
-
       movieInfo: '',
     }
   }
@@ -58,6 +57,9 @@ class EditMovieWindow extends React.Component{
 
   endTimeChnage(date,dateString){
     this.state.movieInfo.endTime=dateString;
+  }
+  getPosterUrl (imgUrl){
+    this.state.movieInfo.poster = imgUrl;
   }
   typeChange(value){
     console.log(value);
@@ -108,7 +110,7 @@ class EditMovieWindow extends React.Component{
 
             <Col span={7}>
               <div style={{padding:'20px 0px 20px 10px'}}>
-                <PosterUpload/>
+                <PosterUpload mode="edit" src={movieInfo.poster} getPosterUrl={this.getPosterUrl.bind(this)}/>
               </div>
             </Col>
 

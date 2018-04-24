@@ -27,7 +27,7 @@ class Management extends React.Component {
         <div style={{padding:'0px 24px 20px 0px'}}>
           <Row gutter={32}>
             <Col span={5} >
-              <div  style={{background:'#fff',minHeight:700}}>
+              <div  style={{background:'#fff',minHeight:890,paddingTop:40}}>
               <div className={styles.setPos}>
                 <img alt=" " src={require('../assets/4.jpg')} className={styles.setCircle}/>
               </div>
@@ -39,7 +39,7 @@ class Management extends React.Component {
               </div>
             </Col>
             <Col span={19}>
-              <div  style={{background: '#fff', padding:24, marginTop:20, minHeight:680}}>
+              <div  style={{background: '#fff', padding:24, marginTop:20, minHeight:870}}>
                 <ManageSelect mid={this.state.mid}/>
               </div>
             </Col>

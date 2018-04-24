@@ -140,7 +140,7 @@ class Movie extends React.Component{
 		let i = this.state.mainButton;
 		return(
       <HomeLayout>
-        <div style={{padding:'30px 10px 20px 10px'}}>
+        <div style={{padding:'30px 30px'}}>
           <div style={{background:'white',paddingBottom:'30px'}}>
             <div className={styles.setHead}>
               <h3 className={styles.setTitle}>正在热映{this.state.data.length}部</h3>

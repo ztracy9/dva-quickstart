@@ -46,7 +46,6 @@ class ShowDetailWindow extends React.Component{
               </Col>
               <Col span={8}>
                 <img style={{width:100,height:150}} src={imgurl} alt=""/>
-                {imgurl}
               </Col>
             </Row>
             <p>{movie.description}</p>
