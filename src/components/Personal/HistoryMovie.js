@@ -7,11 +7,7 @@ import request from '../../utils/request';
 const { Column, ColumnGroup } = Table;
 
 var listData=[];
-const pagination={
-	pageSize:2,
-	total:listData.length,
-	onChange: (() => {}),
-};
+
 class HistoryMovie extends React.Component{
 	constructor(props){
     	super(props);
@@ -21,22 +17,41 @@ class HistoryMovie extends React.Component{
 	}
 	componentWillMount(){
 		let a=sessionStorage.getItem('userId');
+		let list = [];
     	let body={
       		uid:a
     	}
     	request('http://localhost:8080/movie/getWatched',JSON.stringify(body))//根据用户id获取历史电影记录
     	.then((data)=>{
-    		/*console.log('历史电影');
-    		console.log(data);*/
     		if(data){
-    			this.setState({
-    				data:data
-    			});
-    			console.log(this.state.data);
+    		  list = data;
+    			for(let i=0;i<data.length;i++){
+    				  let body={
+						  mid:data[i].id,
+						  uid:a
+					    }
+					request('http://localhost:8080/comment/getByMovieAndUser',JSON.stringify(body))
+      				.then(res=> {
+      					if(res){
+      						list[i].isComment=1
+      					}else{
+      						list[i].isComment=0
+      					}
+      				});
+    			}
     		}
-    	});
+    	})
+        .then(()=>{
+    	    this.setState({
+            data:list
+          });
+        })
+
 	}
+
 	render(){
+	  console.log('data');
+	  console.log(this.state.data);
 		return(
 		  <div >
 			<Table pagination={{pageSize:2}} dataSource={this.state.data} style={{background:'white'}} showHeader={false}>
@@ -54,7 +69,9 @@ class HistoryMovie extends React.Component{
 							<div className={styles.lay}>
 				  				<div className={styles.setAss}>
 				  					<h2>{record.name}（{record.englishname}）</h2>
-				  					<h4><Comment movieId={record.id}/></h4>
+				  					<h4>
+				  					{record.isComment?"已评价":<Comment movieId={record.id}/>}
+				  					</h4>
 				  				</div>
 				  				<div>上映时间：{record.beginTime}~{record.endTime}</div>
 				  				<div>影片类别：{record.movieType}</div>

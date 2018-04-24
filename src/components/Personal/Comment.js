@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal}from 'antd';
+import request from '../../utils/request';
 import CommentContent from './CommentContent';
 
 class Comment extends React.Component{
@@ -17,7 +18,7 @@ class Comment extends React.Component{
 	render(){
 		return(
 			<div>
-				<a href="javascript:void(0)" onClick={this.showModal}>立即评价</a>
+				<a href="javascript:void(0)" onClick={this.showModal}>立即评价</a>				
 				<Modal title="评价" visible={this.state.visible}  onCancel={this.hideModal}  width="400px" footer={null}>
 					<CommentContent hideModal={this.hideModal} movieId={this.props.movieId}/>
 				</Modal>

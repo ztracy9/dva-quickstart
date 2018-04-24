@@ -140,43 +140,38 @@ class Movie extends React.Component{
 		let i = this.state.mainButton;
 		return(
       <HomeLayout>
-        <div style={{padding:'30px 30px'}}>
+        <div style={{padding:'30px 60px'}}>
           <div style={{background:'white',paddingBottom:'30px'}}>
             <div className={styles.setHead}>
               <h3 className={styles.setTitle}>正在热映{this.state.data.length}部</h3>
               <SearchInput placeholder="请输入影片名称" style={{ width: 250 ,paddingTop:'30px' }} />
             </div>
-            <div style={{paddingLeft:'30px',paddingRight:'15px'}}>
-              <Row >
+            <div style={{paddingLeft:'50px'}}>
+              <Row>
                 <Col span={6}>
-                  <div>
                     <img src={"http://localhost:8080"+i.poster} style={{height:'350px',width:'250px'}}/>
                     <div className={styles.setFlex}>
                       <div style={{fontWeight:'600',fontSize:'18px'}}>{i.name}</div>
                       <div>评分：{i.score}</div>
                     </div>
                     <div className={styles.setFlex}>
-                      <div style={{fontSize:'16px',paddingTop:'10px'}}>{i.time}-{i.kind}</div>
-                      <Button type="primary" id={i.id} onClick={this.handleClick.bind(this)}>选座购票1</Button>
+                      <div style={{fontSize:'16px',paddingTop:'10px'}}>{i.duration}分钟-{i.movieType}</div>
+                      <Button type="primary" id={i.id} onClick={this.handleClick.bind(this)}>选座购票</Button>
                     </div>
-                  </div>
-
-
                 </Col>
                 <Col span={18}>
-                <div style={{paddingTop:'10px'}}>
                   <List
-                    grid={{column:4}}
+                    grid={{gutter: 16,column:3}}
                     dataSource={this.state.movielist}
                     renderItem={item=>(
                       <List.Item>
-                        <Row gutter={16}>
+                        <Row>
                           <Col span={12}>
                             <img src={"http://localhost:8080"+item.poster} style={{height:'190px',width:'130px'}}/>
                           </Col>
                           <Col span={12}>
-                            <div style={{paddingTop:'0px'}}>
-                              {item.name.length>8?
+                            <div>
+                              {item.name.length>7?
                                 <p style={{fontSize:'14px'}}>{item.name}</p>:
                                 <p style={{fontSize:'17px'}}>{item.name}</p>}
                               <p>评分：{item.score}</p>
@@ -192,7 +187,6 @@ class Movie extends React.Component{
                       </List.Item>
                     )}
                   />
-                </div>
                 </Col>
               </Row>
             </div>

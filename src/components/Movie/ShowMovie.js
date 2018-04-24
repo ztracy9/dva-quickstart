@@ -12,7 +12,7 @@ class Showmovie extends React.Component{
   }
 	render(){
 		if(this.props.choice){
-			return <div style={{paddingLeft:'30px'}}>
+			return <div style={{paddingTop:'10px',paddingLeft:' 50px'}}>
 						<List
 							grid={{gutter: 16,column:4}}
 							dataSource={this.props.data}
@@ -23,7 +23,7 @@ class Showmovie extends React.Component{
 											<img src={"http://localhost:8080"+item.poster} style={{height:'190px',width:'130px'}}/>
 										</Col>
 										<Col>
-											<div style={{paddingTop:'0px'}}>
+											<div>
 												{item.name.length>8?
 												<p style={{fontSize:'14px'}}>{item.name}</p>:
 												<p style={{fontSize:'17px'}}>{item.name}</p>

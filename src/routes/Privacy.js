@@ -105,7 +105,7 @@ class Privacy extends React.Component {
                 <div className={styles.setPos}>
                   <img alt=" " src={this.state.PUrl} className={styles.setCircle}/>
                 </div>
-                <Menu onClick={this.handleClick} mode="inline" style={{height: '100%', borderRight: 0}}>
+                <Menu onClick={this.handleClick} mode="inline" style={{height: '100%', borderRight: 0}} >
                   <SubMenu key="1" title={<span><Icon type="setting" className={styles.list}/>账号设置</span>}>
                     <Menu.Item key="11"><div style={{paddingLeft:'50px'}}>账号信息</div></Menu.Item>
                     <Menu.Item key="12"><div style={{paddingLeft:'50px'}}>账号绑定</div></Menu.Item>

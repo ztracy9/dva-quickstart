@@ -13,6 +13,8 @@ function checkStatus(response) {
     }*/
     return response;
   }
+  console.log('response');
+  console.log(response);
   return response;
   const error = new Error(response.statusText);
   error.response = response;

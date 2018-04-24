@@ -61,7 +61,7 @@ class LogContent extends React.Component {
         <FormItem>
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
-            initialValue: true,
+            initialValue: false,
           })(
             <Checkbox>记住密码</Checkbox>
           )}

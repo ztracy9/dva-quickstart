@@ -21,7 +21,7 @@ class PriHeader extends React.Component{
     	sessionStorage.removeItem('isAdmin');
     	sessionStorage.removeItem('userId');
     	sessionStorage.removeItem('avatar');
-    	window.history.go(0);
+    	this.props.history.push("/");
     }
   }
 	render(){
