@@ -60,9 +60,6 @@ class NotSee extends React.Component{
     			this.setState({
     				data:data
     			});
-    			listData=[];
-    			for(let i=0;i<this.state.data.length;i++)
-    				listData.push(this.state.data[i]);
     		}
     	});
     	this.renovate();

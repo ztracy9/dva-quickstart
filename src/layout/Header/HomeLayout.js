@@ -48,10 +48,10 @@ class HomeLayout extends React.Component{
           {children}
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-            Mlife cinema System 2016 Created by Ant UED
+            Mlife cinema System 2018 Created by Ant UED
         </Footer>
       </Layout>;
-      }     	
+      }
 		}else{
       return <Layout>
         <LogHeader getStatus={this.getStatus}/>
@@ -61,7 +61,7 @@ class HomeLayout extends React.Component{
         <Footer style={{ textAlign: 'center' }}>
           Mlife cinema System 2016 Created by Ant UED
         </Footer>
-        </Layout>;      
+        </Layout>;
 		}
 	}
 }

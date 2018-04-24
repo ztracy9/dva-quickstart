@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Layout,Divider,Row, Col,Card } from 'antd';
+import { Layout,Divider,Row, Col,Card,Button } from 'antd';
 import TimePoint from '../components/chooseTime/TimePoint';
 import HomeLayout from '../layout/Header/HomeLayout';
 import request from '../utils/request';
@@ -21,6 +21,9 @@ class TimePage extends React.Component{
         });
       });
   }
+  handleClick(){
+    this.props.history.push('/movie');
+  }
   render(){
     const {mid,cid} = this.props.match.params;
     const{movie} = this.state;
@@ -38,7 +41,11 @@ class TimePage extends React.Component{
               </div>
             </Card>
             <div style={{padding:"30px",color:"white"}}>
-              <Divider className = "devide" style={{color:"white",textAlign:"center"}}>其他正在热映</Divider>
+              <Divider className = "devide" style={{color:"white",textAlign:"center"}}>
+                <Button className="bu" ghost={true} style={{border:0}} onClick={this.handleClick.bind(this)}>
+                  其他正在热映
+                </Button>
+              </Divider>
             </div>
           </Col>
           <Col span="18" style={{background:'white'}}>

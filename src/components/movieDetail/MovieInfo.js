@@ -1,5 +1,6 @@
 import { Layout,Card, Button,Icon,Radio } from 'antd';
 import React from 'react';
+import moment from 'moment';
 import {withRouter} from 'react-router-dom';
 import request from '../../utils/request';
 const { Header, Footer, Sider, Content } = Layout;
@@ -35,7 +36,22 @@ class MovieInfo extends React.Component{
   render (){
     const {movie_info} = this.state;
     let imgurl="http://localhost:8080"+movie_info.poster;
-
+    let bu_tton;
+    let begin = moment(movie_info.beginTime);
+    let end = moment(movie_info.endTime);
+    let now = moment();
+    if(begin<=now&&end>=now){
+      bu_tton=( <Button type="primary" onClick={this.handleClick.bind(this)} style={{float:'left'}}>
+        购票<Icon type="right" />
+      </Button>);
+    }
+    else if(begin>now)
+    {
+      bu_tton=(<div style={{fontSize:16,color:'#096dd9'}}>.....此影片还未上映请耐心等待....</div>);
+    }
+    else{
+      bu_tton=(<div style={{fontSize:16,color:'#096dd9'}}>.....此影片已经下架....</div>);
+    }
     return(
       <Layout  style={{ padding: 24, minHeight: 260 }}>
         <Sider style={{backgroundColor:'rgba(0,0,0,0)'}}>
@@ -57,9 +73,7 @@ class MovieInfo extends React.Component{
 
           <p style={{fontSize:15,fontFamily:'微软雅黑'}}>剧情简介：{movie_info.description}</p>
           <div style={{alignSelf:'flex-end',padding:'20px 0px 0px 0px'}}>
-            <Button type="primary" onClick={this.handleClick.bind(this)} style={{float:'left'}}>
-              购票<Icon type="right" />
-            </Button>
+            {bu_tton}
           </div>
         </Content>
 

@@ -36,7 +36,7 @@ class PosterUpload extends React.Component {
       });
       });
       let resUrl = info.file.response.data.data;
-      let poster = "localhost:8080"+resUrl;
+      let poster = resUrl;
       this.props.getPosterUrl(poster);
     }
   }

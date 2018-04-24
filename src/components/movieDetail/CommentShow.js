@@ -22,7 +22,7 @@ const columns=[
           </Row>
         </Col>
         <Col span={6}>
-          <Rate disabled defaultValue={record.rank} />
+          <Rate disabled defaultValue={record.grade} />
         </Col>
       </Row>
     )
@@ -38,12 +38,22 @@ class CommentShow extends React.Component {
   }
   componentWillMount(){
     let body = {mid:this.props.mid};
+   let list = [];
     request('http://localhost:8080/comment/getByMid',JSON.stringify(body))
       .then((res)=>{
+      console.log(res);
+        for(let i in res){
+          res[i].avatar = "http://localhost:8080"+res[i].avatar;
+          res[i].grade = parseInt(res[i].grade)/2;
+          list.push(res[i]);
+        }
+      })
+      .then(()=>{
         this.setState({
-          commentList:res
+          commentList:list
         });
-      });
+      })
+
   }
   render() {
     const{commentList} = this.state;

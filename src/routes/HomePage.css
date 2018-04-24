@@ -1,17 +1,18 @@
-.antCarousel{
-  text-align: center;
-  height: 600px;
-  width:100%;
-  background: #F5F5F5;
-  overflow: hidden;
+@font-face{
+  font-family:'Alex Brush';
+  src: url('../font/Alex Brush ROB.ttf');
+  font-family:'LK';
 }
-.setColor{
-  filter:alpha(opacity=50);
+.font{
+  color:white;
+  font-size: 60px;
+  font-family: 'Alex Brush', cursive;
 }
-.img{
-	margin-top:2%;
-	height:550px;
-	width:80%;
-	margin-left:10%;
-	filter:alpha(opacity=50);
+.movie{
+  color:white;
+  font-size: 60px;
+}
+.button{
+  display: flex;
+  justify-content: space-around;
 }

@@ -18,6 +18,10 @@ class PriHeader extends React.Component{
     	this.props.history.push("/privacy");
     }else if(e.key==="5"){
     	sessionStorage.removeItem('access_token');
+    	sessionStorage.removeItem('isAdmin');
+    	sessionStorage.removeItem('userId');
+    	sessionStorage.removeItem('avatar');
+    	window.location.reload();
     }
   }
 	render(){
@@ -30,15 +34,20 @@ class PriHeader extends React.Component{
 							<Menu.Item className={styles.font} key="1">首页</Menu.Item>
 							<Menu.Item className={styles.font} key="2">电影</Menu.Item>
 						</Menu>
-						</Col>
-						<Col span={6}><div style={{color:'white'}} className={styles.brand}>Mlife</div></Col>
-						<Col span={6}>
+					</Col>
+					<Col span={6}><div style={{color:'white'}} className={styles.brand}>Mlife</div></Col>
+					<Col span={5}>
 						<Menu mode="horizontal" style={{ lineHeight: '64px',height:'65px',background:'black',color:'white'}} onClick={this.handleClick}>
 							<Menu.Item className={styles.font} key="3">个人中心</Menu.Item>
 							<Menu.Item className={styles.font} key="4">
 								<Contact/>
 							</Menu.Item>
-							<Menu.Item className={styles.font} key="5">退出登录</Menu.Item>
+							
+						</Menu>
+					</Col>
+					<Col span={2}>
+						<Menu mode="horizontal" style={{ lineHeight: '64px',height:'65px',background:'black',color:'white'}} onClick={this.handleClick}>
+							<Menu.Item key="5">退出</Menu.Item>
 						</Menu>
 					</Col>
 				</Row>				

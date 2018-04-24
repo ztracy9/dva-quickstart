@@ -36,13 +36,20 @@ class TimePoint extends React.Component {
        day:tday,
     };
     console.log(body);
+    let list = [];
     request('http://localhost:8080/time/getTime',JSON.stringify(body))
       .then((res)=>{
         console.log(res);//处理传过来的时间
-        this.setState({
-          TimeList:res
+        list = res.filter(function(i){
+          return moment(i.start_time) > moment();
         });
-      });
+      })
+      .then(()=>{
+      console.log(list);
+        this.setState({
+          TimeList:list
+        });
+      })
   }
   componentWillMount () {
     const {mid,cid} = this.props;

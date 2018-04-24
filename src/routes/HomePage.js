@@ -1,18 +1,42 @@
 import React from 'react';
-import { Carousel } from 'antd';
+import {withRouter} from "react-router-dom";
+import { Button,Row,Col } from 'antd';
 import HomeLayout from '../layout/Header/HomeLayout';
+import Pic from '../assets/timg.jpg';
 import styles from './HomePage.css';
 
+var bg={
+  borderTop: 'solid 1px #F2F2F2',
+  height:'570px',
+  width:'100%',
+  backgroundImage:`url(${Pic})`,
+  backgroundPosition:'70px',
+}
 class HomePage extends React.Component {
+	handleClick=()=>{
+		this.props.history.push("/register");
+	}
 	render(){
 		return(
 			<HomeLayout>
-				<Carousel autoplay className={styles.antCarousel}  effect="fade" autoplay>
-					<div className={styles.setColor}><img src={require('../assets/1.jpg')} alt="" className={styles.img} /></div>
-					<div><img src={require('../assets/2.jpg')} alt="" className={styles.img} /></div>
-					<div><img src={require('../assets/3.gif')} alt="" className={styles.img} /></div>
-					<div><img src={require('../assets/4.jpg')} alt="" className={styles.img} /></div>
-				</Carousel>
+				<div style={bg}>
+          <div style={{width:'100%',height:'100%',backgroundColor:'rgba(0,0,0,0.2)'}}>
+					<div style={{paddingTop:'130px' ,paddingLeft:' 760px'}}>
+
+						<div className={styles.font}>The movie meet Life</div>
+						<div style={{fontSize:'35px',paddingLeft:'60px',color:'white'}}>电影，遇见生活</div>
+						<p></p>
+						<div style={{paddingLeft:'100px',color:'white'}}>
+							<a style={{color:'white'}} onClick={this.handleClick}>
+								<div style={{width:'150px',height:'50px',borderStyle:'solid',boderWidth:'10px'}}>
+									<span style={{height:'50px',lineHeight:'50px',display:'block',color:'white',textAlign:'center',fontSize:'18px'}}>创建新账户</span>
+								</div>
+							</a>
+						</div>
+            </div>
+					</div>
+
+        </div>
 			</HomeLayout>
 		);
 	}
@@ -21,4 +45,4 @@ class HomePage extends React.Component {
 HomePage.propTypes = {
 };
 
-export default HomePage;
+export default withRouter(HomePage);

@@ -106,6 +106,9 @@ class Movie extends React.Component{
    		}
     });
   }
+  tabChange(value){
+    this.props.history.push('/movieDetail/'+value);
+  }
   getNoton(){//获取未上映电影信息
   	fetch('http://localhost:8080/movie/getNotOn')
   	.then(res => res.json())
@@ -128,7 +131,7 @@ class Movie extends React.Component{
   }
 	render(){
 		let listButton= this.state.notOn.map(i=>
-			<TabPane tab={
+			<TabPane key={i.id} tab={
 				<Card style={{ width: 180,height:350 }} cover={<img alt="" src={"http://localhost:8080"+i.poster} className={styles.img}/>}>
 					<Meta title={i.name} description={i.beginTime+"上映"}/>
 				</Card>}
@@ -136,16 +139,16 @@ class Movie extends React.Component{
 		);
 		let i = this.state.mainButton;
 		return(
-			<HomeLayout>
-				<div style={{padding:'30px 60px'}}>
-					<div style={{background:'white',paddingBottom:'30px'}}>
-						<div className={styles.setHead}>
-							<h3 className={styles.setTitle}>正在热映{this.state.data.length}部</h3>
-							<SearchInput placeholder="请输入影片名称" style={{ width: 250 ,paddingTop:'30px' }} />
-						</div>
-						<div style={{paddingLeft:'30px',paddingRight:'15px'}}>
-							<Row>
-								<Col span={6}>
+      <HomeLayout>
+        <div style={{padding:'30px 10px 20px 10px'}}>
+          <div style={{background:'white',paddingBottom:'30px'}}>
+            <div className={styles.setHead}>
+              <h3 className={styles.setTitle}>正在热映{this.state.data.length}部</h3>
+              <SearchInput placeholder="请输入影片名称" style={{ width: 250 ,paddingTop:'30px' }} />
+            </div>
+            <div style={{paddingLeft:'30px',paddingRight:'15px'}}>
+              <Row >
+                <Col span={6}>
                   <div>
                     <img src={"http://localhost:8080"+i.poster} style={{height:'350px',width:'250px'}}/>
                     <div className={styles.setFlex}>
@@ -154,63 +157,64 @@ class Movie extends React.Component{
                     </div>
                     <div className={styles.setFlex}>
                       <div style={{fontSize:'16px',paddingTop:'10px'}}>{i.time}-{i.kind}</div>
-                      <Button onClick={this.handleClick}>1</Button>
                       <Button type="primary" id={i.id} onClick={this.handleClick.bind(this)}>选座购票1</Button>
                     </div>
                   </div>
 
 
-								</Col>
-								<div style={{paddingTop:'10px'}}>
-									<List
-										grid={{column:4}}
-										dataSource={this.state.movielist}
-										renderItem={item=>(
-											<List.Item>
-												<Row>
-													<Col span={12}>
-														<img src={"http://localhost:8080"+item.poster} style={{height:'190px',width:'130px'}}/>
-													</Col>
-													<Col>
-														<div style={{paddingTop:'0px',paddingLeft:'-2%'}}>
-															{item.name.length>8?
-                              <p style={{fontSize:'14px'}}>{item.name}</p>:
-                              <p style={{fontSize:'17px'}}>{item.name}</p>}
+                </Col>
+                <Col span={18}>
+                <div style={{paddingTop:'10px'}}>
+                  <List
+                    grid={{column:4}}
+                    dataSource={this.state.movielist}
+                    renderItem={item=>(
+                      <List.Item>
+                        <Row gutter={16}>
+                          <Col span={12}>
+                            <img src={"http://localhost:8080"+item.poster} style={{height:'190px',width:'130px'}}/>
+                          </Col>
+                          <Col span={12}>
+                            <div style={{paddingTop:'0px'}}>
+                              {item.name.length>8?
+                                <p style={{fontSize:'14px'}}>{item.name}</p>:
+                                <p style={{fontSize:'17px'}}>{item.name}</p>}
                               <p>评分：{item.score}</p>
                               <p>时长：{item.duration}分钟</p>
                               {item.movieType.length>8?
-                              <p style={{fontSize:'10px'}}>{item.movieType}</p>:
-                              <p>{item.movieType}</p>
+                                <p style={{fontSize:'10px'}}>{item.movieType}</p>:
+                                <p>{item.movieType}</p>
                               }
-															<Button id={item.id} type="primary" onClick={this.handleClick.bind(this)}>选座购票</Button>
-														</div>
-													</Col>
-												</Row>
-											</List.Item>
-										)}
-									/>
-								</div>
-							</Row>
-						</div>
-						{this.state.show?<div>
-							<ShowMovie choice={this.state.choice} data={this.state.list}/>
-							<div style={{textAlign:'center'}}>
-								<div onClick={this.onClick} style={{fontSize:'20px'}}><Icon type={this.state.icon} style={{color:'#1E90FF'}}/>{this.state.value}</div>
-							</div>
-						</div>:''}
-					</div>
-				</div>
-				<div style={{padding:'20px 60px'}}>
-					<div className={styles.will}>
-						<div className={styles.setHead}>
-							<h3 className={styles.setTitle}>即将上映{this.state.notOn.length}部</h3>
-						</div>
-						<Tabs defaultActiveKey="1" tabPosition="top" style={{ height: 400 }}>
-							{listButton}
-						</Tabs>
-					</div>
-				</div>
-			</HomeLayout>
+                              <Button id={item.id} type="primary" onClick={this.handleClick.bind(this)}>选座购票</Button>
+                            </div>
+                          </Col>
+                        </Row>
+                      </List.Item>
+                    )}
+                  />
+                </div>
+                </Col>
+              </Row>
+            </div>
+            {this.state.show?<div>
+              <ShowMovie choice={this.state.choice} data={this.state.list}/>
+              <div style={{textAlign:'center'}}>
+                <div onClick={this.onClick} style={{fontSize:'20px'}}><Icon type={this.state.icon} style={{color:'#1E90FF'}}/>{this.state.value}</div>
+              </div>
+            </div>:''}
+          </div>
+        </div>
+        <div style={{padding:'20px 60px'}}>
+          <div className={styles.will}>
+            <div className={styles.setHead}>
+              <h3 className={styles.setTitle}>即将上映{this.state.notOn.length}部</h3>
+            </div>
+            <Tabs defaultActiveKey="1" tabPosition="top" style={{ height: 400 }} onChange={this.tabChange.bind(this)}>
+              {listButton}
+            </Tabs>
+          </div>
+        </div>
+      </HomeLayout>
 		);
 	}
 }

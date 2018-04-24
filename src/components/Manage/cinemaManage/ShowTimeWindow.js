@@ -90,7 +90,7 @@ class ShowTimeWindow extends React.Component{
           onOk={this.handleOk.bind(this)}
           onCancel={this.handleCancel.bind(this)}
           destroyOnClose={true}
-          width={800}
+          width={700}
         >
           <Tabs defaultActiveKey="0" onChange={this.DateChange.bind(this)}>
             <TabPane tab={daylist[0]} key="0" ></TabPane>
@@ -98,12 +98,12 @@ class ShowTimeWindow extends React.Component{
             <TabPane tab={daylist[2]} key="2"></TabPane>
           </Tabs>
 
-          <div style={{width:700}}>
+          <div style={{width:600}}>
             <List
               dataSource={this.state.movie_Timelist}
               renderItem={item => (
                 <List.Item>
-                  <div>
+                  <div style={{width:500}}>
                     <p style={{fontWeight:'bold',fontSize:16}}>电影：{item.name}</p>
                     <List  grid={{gutter:32,column: 4 }} dataSource={item.timelist} renderItem={ item=>(
                      <List.Item>
@@ -122,7 +122,7 @@ class ShowTimeWindow extends React.Component{
           </div>
           <Divider/>
           <Row>
-            <Col span={5} style={{fontWeight:'bold',fontSize:16}}>添加场次：</Col>
+            <Col span={4} style={{fontWeight:'bold',fontSize:16}}>添加场次：</Col>
             <Col span={5}>
               <AddTimeWindow day={this.state.day} cid={this.props.cinema.id} />
             </Col>

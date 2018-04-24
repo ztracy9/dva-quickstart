@@ -62,16 +62,13 @@ class AllTicket extends React.Component{
     			this.setState({
     				data:data
     			});
-    			listData=[];
-    			for(let i=0;i<this.state.data.length;i++)
-    				listData.push(this.state.data[i]);
     		}
     	});
     	this.renovate();
 	}
 	render(){
 		return(
-			<Table pagination={{pageSize:5}} dataSource={this.state.data} style={{background:'white',padding:'20px 70px'}} showHeader={false}>
+			<Table pagination={{pageSize:3}} dataSource={this.state.data} style={{background:'white',padding:'20px 70px'}} showHeader={false}>
 			<Column
 					render={(text,record)=>(
 						<div style={{paddingLeft:'50px'}}>

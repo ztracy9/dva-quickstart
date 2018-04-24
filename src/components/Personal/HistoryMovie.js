@@ -38,6 +38,7 @@ class HistoryMovie extends React.Component{
 	}
 	render(){
 		return(
+		  <div >
 			<Table pagination={{pageSize:2}} dataSource={this.state.data} style={{background:'white'}} showHeader={false}>
 				<Column
 					dataIndex="avatar"
@@ -53,7 +54,7 @@ class HistoryMovie extends React.Component{
 							<div className={styles.lay}>
 				  				<div className={styles.setAss}>
 				  					<h2>{record.name}（{record.englishname}）</h2>
-				  					<h4><Comment/></h4>
+				  					<h4><Comment movieId={record.id}/></h4>
 				  				</div>
 				  				<div>上映时间：{record.beginTime}~{record.endTime}</div>
 				  				<div>影片类别：{record.movieType}</div>
@@ -63,6 +64,7 @@ class HistoryMovie extends React.Component{
 					)}
 				/>
 		    </Table>
+      </div>
 		);
 	}
 }

@@ -8,7 +8,7 @@ import moment from 'moment';
 import seatChosen from "../models/seatChosen";
 import request from "../utils/request";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Sider, Content,notification  } = Layout;
 
 class ChooseSeatPage extends React.Component{
   constructor (props) {
@@ -59,6 +59,7 @@ class ChooseSeatPage extends React.Component{
       seatlist:this.props.seatChosen.list
     });
   }
+  //购买
   handleClick(){
     let cnt=this.state.seatlist.length;
     if(cnt==0){
@@ -67,12 +68,16 @@ class ChooseSeatPage extends React.Component{
     }
     let body={
       "tid":this.props.match.params.tid,
-      "uid":sessionStorage.getItem('userId'),
+      "uid":sessionStorage.getItem('userId')||'',
       "cnt":cnt,
       "seat":this.state.seatlist,
       "money":cnt*this.state.cost
     }
-    console.log(body);
+    if(body.uid=='')
+    {
+      message.warning('请先登录');
+      return;
+    }
     request('http://localhost:8080/order/add',JSON.stringify(body))
       .then((res)=>{
            console.log(res);
@@ -83,7 +88,7 @@ class ChooseSeatPage extends React.Component{
            }
            else
            {
-              message.error('购票失败');
+              message.error('购票失败，请检查余额是否足够');
            }
       });
   }

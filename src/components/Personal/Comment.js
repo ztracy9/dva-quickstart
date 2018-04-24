@@ -19,7 +19,7 @@ class Comment extends React.Component{
 			<div>
 				<a href="javascript:void(0)" onClick={this.showModal}>立即评价</a>
 				<Modal title="评价" visible={this.state.visible}  onCancel={this.hideModal}  width="400px" footer={null}>
-					<CommentContent hideModal={this.hideModal}/>
+					<CommentContent hideModal={this.hideModal} movieId={this.props.movieId}/>
 				</Modal>
 			</div>
 		);

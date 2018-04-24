@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu,Icon,message} from 'antd';
+import { Layout, Menu,Icon,message,Row,Col} from 'antd';
 import request from '../utils/request';
 import HomeLayout from '../layout/Header/HomeLayout';
 import Select from '../components/Personal/Select';
@@ -97,33 +97,38 @@ class Privacy extends React.Component {
 	render(){
     console.log(this.state.PUrl);
 		return(
-			<HomeLayout>
-				<Layout>
-					<Sider width={240} style={{background:'#fff'}} className={styles.sider}>
-						<div className={styles.setPos}>
-							<img alt=" " src={this.state.PUrl} className={styles.setCircle}/>
-						</div>
-						<Menu onClick={this.handleClick} mode="inline" style={{height: '100%', borderRight: 0}}>
-							<SubMenu key="1" title={<span><Icon type="setting" className={styles.list}/>账号设置</span>}>
-								<Menu.Item key="11"><div style={{paddingLeft:'50px'}}>账号信息</div></Menu.Item>
-								<Menu.Item key="12"><div style={{paddingLeft:'50px'}}>账号绑定</div></Menu.Item>
-								<Menu.Item key="13"><div style={{paddingLeft:'50px'}}>修改密码</div></Menu.Item>
-							</SubMenu>
-							<Menu.Item key="2"><Icon type="wallet"className={styles.list}/>我的账户</Menu.Item>
-              <SubMenu key="3" title={<span><Icon type="global" className={styles.list}/>我的电影票</span>}>
-                <Menu.Item key="31"><div style={{paddingLeft:'50px'}}>全部影票</div></Menu.Item>
-                <Menu.Item key="32"><div style={{paddingLeft:'50px'}}>未观看影票</div></Menu.Item>
-              </SubMenu>
-							<Menu.Item key="4" ><Icon type="barcode" className={styles.list}/>我看过的电影</Menu.Item>
-						</Menu>
-					</Sider>
-					<Layout style={{padding: '40px'}}>
-						<Content style={{background: '#fff', padding:24, margin:0, minHeight:480}}>
-						<Select pid={this.state.pid} handleChange={this.handleChange} url={this.state.url} money={this.state.Pmoney} text={this.state.Ptext} telenumber={this.state.Ptelenumber} mail={this.state.Pmail} getPW={this.getPW} getTele={this.getTele}/>
-						</Content>
-					</Layout>
-				</Layout>
-			</HomeLayout>
+      <HomeLayout>
+        <div style={{padding:'0px 24px 20px 0px'}}>
+          <Row gutter={32}>
+            <Col span={5} >
+              <div  style={{background:'#fff',minHeight:890,paddingTop:40}}>
+                <div className={styles.setPos}>
+                  <img alt=" " src={this.state.PUrl} className={styles.setCircle}/>
+                </div>
+                <Menu onClick={this.handleClick} mode="inline" style={{height: '100%', borderRight: 0}}>
+                  <SubMenu key="1" title={<span><Icon type="setting" className={styles.list}/>账号设置</span>}>
+                    <Menu.Item key="11"><div style={{paddingLeft:'50px'}}>账号信息</div></Menu.Item>
+                    <Menu.Item key="12"><div style={{paddingLeft:'50px'}}>账号绑定</div></Menu.Item>
+                    <Menu.Item key="13"><div style={{paddingLeft:'50px'}}>修改密码</div></Menu.Item>
+                  </SubMenu>
+                  <Menu.Item key="2"><Icon type="wallet"className={styles.list}/>我的账户</Menu.Item>
+                  <SubMenu key="3" title={<span><Icon type="global" className={styles.list}/>我的电影票</span>}>
+                    <Menu.Item key="31"><div style={{paddingLeft:'50px'}}>全部影票</div></Menu.Item>
+                    <Menu.Item key="32"><div style={{paddingLeft:'50px'}}>未观看影票</div></Menu.Item>
+                  </SubMenu>
+                  <Menu.Item key="4" ><Icon type="barcode" className={styles.list}/>我看过的电影</Menu.Item>
+                </Menu>
+              </div>
+            </Col>
+            <Col span={19}>
+              <div  style={{background: '#fff', padding:24, marginTop:20, minHeight:870}}>
+                <Select pid={this.state.pid} handleChange={this.handleChange} url={this.state.url} money={this.state.Pmoney} text={this.state.Ptext}
+                        telenumber={this.state.Ptelenumber} mail={this.state.Pmail} getPW={this.getPW} getTele={this.getTele}/>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </HomeLayout>
 		);
 	}
 }

@@ -71,9 +71,12 @@ const columns = [
 ];
 
 function save5cast(cast){
+
+  /*
   let list=cast.split(',');
   list.splice(5,list.length-1); //只保留5个主演
-  return list.join(',');
+  return list.join(',');*/
+  return cast;
 }
 
 class MovieManageTable extends React.Component{
@@ -92,10 +95,7 @@ class MovieManageTable extends React.Component{
       .then(res => res.json())
       .then(res => {
         result=res.data.data;
-        for(let i in result){
-          let info = result[i];
-          result[i].cast=save5cast(info.cast);
-        }
+
       })
       .then(()=>{
         this.setState({
