@@ -20,7 +20,7 @@ class Privacy extends React.Component {
     	Ptelenumber:'',
     	Pmail:'',
     	Ppassword:'',
-      Pmoney:0
+      Pmoney:0,
     }
   }
   componentWillMount(){
@@ -95,6 +95,8 @@ class Privacy extends React.Component {
     });
   }
 	render(){
+    if(sessionStorage.getItem('isAdmin')=='true')
+      return(<div style={{padding:40,fontWeight:'bold',fontSize:16,textAlign:'center'}}>你不是普通用户，无权查看此页面</div>);
     console.log(this.state.PUrl);
 		return(
       <HomeLayout>

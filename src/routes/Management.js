@@ -22,6 +22,8 @@ class Management extends React.Component {
     });
   }
 	render(){
+    if(sessionStorage.getItem('isAdmin')=='false')
+      return(<div style={{padding:40,fontWeight:'bold',fontSize:16,textAlign:'center'}}>你不是管理员，无权查看此页面</div>);
 		return(
 			<HomeLayout>
         <div style={{padding:'0px 24px 20px 0px'}}>

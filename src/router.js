@@ -9,7 +9,7 @@ import Privacy from './routes/Privacy';
 import Movie from './routes/Movie';
 import Register from './routes/Register';
 import Management from './routes/Management';
-
+import ChartsShow from './components/charts/ChartsShow';
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -24,6 +24,9 @@ function RouterConfig({ history }) {
         <Route path="/cinema/:mid" exact component={CinemaChoosePage}/>
         <Route path="/timelist/:mid/:cid" exact component={TimePage}/>
         <Route path="/chooseSeat/:tid" exact component={ChooseSeatPage}/>
+
+        <Route path="/test" exact component={ChartsShow}/>
+
       </Switch>
     </Router>
   );

@@ -62,6 +62,10 @@ class ChooseSeatPage extends React.Component{
   }
   //购买
   handleClick(){
+    if(sessionStorage.getItem('isAdmin')=='true'){
+      message.warning('您的当前身份为管理员，不能买票');
+      return;
+    }
     let cnt=this.state.seatlist.length;
     if(cnt==0){
       message.warning('请先选择座位');
